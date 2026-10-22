@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="author" content="charlied@ys">
+<meta name="robots" content="noindex">
+<title>ShiftOnDuty · Calendario</title>
+<!--
+  ShiftOnDuty — Página puente para el Calendario del iPhone. © 2026 charlied@ys.
+  Los turnos llegan DENTRO del link (después del #). Esa parte nunca se envía a internet:
+  esta página arma el archivo de calendario en el mismo teléfono. No guarda ni envía nada.
+-->
+<style>
+:root{--bg:#F4F5F1;--card:#fff;--ink:#1A211D;--muted:#5F6B64;--line:#DCE1DC;--accent:#1B63C4;--ok:#2F7D4A;--bad:#B5352B;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#101512;--card:#18201B;--ink:#E5ECE7;--muted:#97A59C;--line:#2A352E;--accent:#7DB4F2;--ok:#6CCB8F;--bad:#F07B70;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:560px;margin:0 auto;padding:max(20px,env(safe-area-inset-top)) 16px 40px}
+h1{font-size:26px;margin:0 0 4px}h1 span{color:var(--accent)}
+.muted{color:var(--muted);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:14px 0}
+.btn{display:block;width:100%;text-align:center;border:0;border-radius:12px;padding:16px;font:inherit;font-weight:700;font-size:18px;background:var(--accent);color:#fff;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent);font-size:15px;padding:12px;margin-top:10px}
+ul{margin:8px 0 0;padding-left:18px}li{margin:3px 0}
+.err{color:var(--bad);font-weight:600}
+ol{padding-left:20px;margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Shift<span>OnDuty</span></h1>
+  <div class="muted">Pasar mis turnos al Calendario del iPhone</div>
+  <div id="app" class="card">Leyendo…</div>
+  <p class="muted">🔒 Tus turnos viajan dentro del link y esta página arma el archivo en tu teléfono. No se envían ni se guardan en internet.</p>
+</div>
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id)};
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var pad=function(n){return String(n).padStart(2,'0')};
+var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],DIA=['dom','lun','mar','mié','jue','vie','sáb'];
+
+/* ---- leer los datos del link: #d=<base64url de JSON> ---- */
+function leer(){
+  var h=location.hash.replace(/^#/,''),m=/(?:^|&)d=([^&]+)/.exec(h);if(!m)return null;
+  var b=m[1].replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';
+  var bin=atob(b),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+  return JSON.parse(new TextDecoder().decode(u));
+}
+
+/* ---- armar el .ics ----
+   Formato que manda la app (v1):
+   {v:1, sg:'CD', tz:-6, gen:<ms>, ev:[{u:'id único', t:'título', s:'AAAAMMDDTHHMM' o 'AAAAMMDD', e:'...', d:'descripción', a:[minutos antes,…] }]} */
+function fold(line){var out='',cur='';for(var ch of line){var add=unescape(encodeURIComponent(ch)).length;if((unescape(encodeURIComponent(cur)).length+add)>73){out+=cur+'\r\n ';cur=''}cur+=ch}return out+cur;}
+function txt(s){return String(s||'').replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');}
+function aUTC(s,tz){ // 'AAAAMMDDTHHMM' hora local (tz en horas, ej. -6) -> 'AAAAMMDDTHHMM00Z'
+  var d=new Date(Date.UTC(+s.slice(0,4),+s.slice(4,6)-1,+s.slice(6,8),+s.slice(9,11)-tz,+s.slice(11,13)));
+  return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z';}
+function ics(D){
+  var now=new Date(),st=now.getUTCFullYear()+pad(now.getUTCMonth()+1)+pad(now.getUTCDate())+'T'+pad(now.getUTCHours())+pad(now.getUTCMinutes())+pad(now.getUTCSeconds())+'Z';
+  var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//charlied@ys//ShiftOnDuty//ES','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:ShiftOnDuty'];
+  D.ev.forEach(function(e){
+    var dia=e.s.length===8;
+    L.push('BEGIN:VEVENT','UID:'+e.u+'@shiftonduty','DTSTAMP:'+st,'SEQUENCE:'+Math.floor((D.gen||Date.now())/1000));
+    if(dia){L.push('DTSTART;VALUE=DATE:'+e.s,'DTEND;VALUE=DATE:'+(e.e||e.s),'TRANSP:TRANSPARENT');}
+    else{L.push('DTSTART:'+aUTC(e.s,D.tz),'DTEND:'+aUTC(e.e,D.tz));}
+    L.push(fold('SUMMARY:'+txt(e.t)));if(e.d)L.push(fold('DESCRIPTION:'+txt(e.d)));
+    (e.a||[]).slice(0,2).forEach(function(min){
+      L.push('BEGIN:VALARM','ACTION:DISPLAY',fold('DESCRIPTION:'+txt(e.t)),'TRIGGER:'+(min>=0?'-':'')+'PT'+Math.abs(min)+'M','END:VALARM');});
+    L.push('END:VEVENT');});
+  L.push('END:VCALENDAR');return L.join('\r\n')+'\r\n';
+}
+function fechaTxt(s){var d=new Date(+s.slice(0,4),+s.slice(4,6)-1,+s.slice(6,8));return DIA[d.getDay()]+' '+d.getDate()+' '+MES[d.getMonth()]+(s.length>8?' '+s.slice(9,11)+':'+s.slice(11,13):'');}
+
+var D;try{D=leer()}catch(_){D=null}
+if(!D||!D.ev){ $('app').innerHTML='<p class="err">Este link no trae turnos.</p><p>Ábrelo desde ShiftOnDuty: <b>Turnos → 📅 Pasar mis turnos al Calendario</b>.</p>';return; }
+if(!D.ev.length){ $('app').innerHTML='<p>No hay turnos ni eventos próximos para pasar.</p>';return; }
+var data=ics(D),nT=D.ev.filter(function(e){return e.k==='t'}).length,nE=D.ev.length-nT;
+var dataUrl='data:text/calendar;charset=utf-8,'+encodeURIComponent(data);
+var lista=D.ev.slice(0,12).map(function(e){return '<li><b>'+esc(fechaTxt(e.s))+'</b> · '+esc(e.t)+'</li>'}).join('')+(D.ev.length>12?'<li class="muted">y '+(D.ev.length-12)+' más…</li>':'');
+$('app').innerHTML='<p><b>'+esc(D.sg||'')+'</b> · '+nT+' turno'+(nT===1?'':'s')+(nE?' y '+nE+' evento'+(nE===1?'':'s'):'')+', cada uno con sus avisos.</p>'+
+  '<a class="btn" id="go" href="'+dataUrl+'">📅 Agregar al Calendario</a>'+
+  '<button class="btn ghost" id="dl" type="button">Si no se abre: descargar el archivo</button>'+
+  '<ol class="muted" style="margin-top:12px"><li>Toca <b>Agregar al Calendario</b>.</li><li>El iPhone muestra tus turnos: toca <b>Agregar todo</b>.</li><li>Elige el calendario (puede ser uno llamado “Trabajo”) y listo.</li></ol>'+
+  '<details style="margin-top:8px"><summary class="muted">Ver lo que se va a agregar</summary><ul>'+lista+'</ul></details>';
+$('dl').onclick=function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'text/calendar'}));a.download='ShiftOnDuty-'+(D.sg||'turnos')+'.ics';document.body.appendChild(a);a.click();
+  setTimeout(function(){alert('Abre la app Archivos → Descargas → toca ShiftOnDuty-'+(D.sg||'turnos')+'.ics → Agregar todo.')},600);};
+})();
+</script>
+</body>
+</html>
