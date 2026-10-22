@@ -82,9 +82,11 @@ var dataUrl='data:text/calendar;charset=utf-8,'+encodeURIComponent(data);
 var lista=D.ev.slice(0,12).map(function(e){return '<li><b>'+esc(fechaTxt(e.s))+'</b> · '+esc(e.t)+'</li>'}).join('')+(D.ev.length>12?'<li class="muted">y '+(D.ev.length-12)+' más…</li>':'');
 $('app').innerHTML='<p><b>'+esc(D.sg||'')+'</b> · '+nT+' turno'+(nT===1?'':'s')+(nE?' y '+nE+' evento'+(nE===1?'':'s'):'')+', cada uno con sus avisos.</p>'+
   '<a class="btn" id="go" href="'+dataUrl+'">📅 Agregar al Calendario</a>'+
-  '<button class="btn ghost" id="dl" type="button">Si no se abre: descargar el archivo</button>'+
+  '<button class="btn ghost" id="b2" type="button">Si no se abre: probar método 2</button>'+
+  '<button class="btn ghost" id="dl" type="button">Método 3: descargar el archivo</button>'+
   '<ol class="muted" style="margin-top:12px"><li>Toca <b>Agregar al Calendario</b>.</li><li>El iPhone muestra tus turnos: toca <b>Agregar todo</b>.</li><li>Elige el calendario (puede ser uno llamado “Trabajo”) y listo.</li></ol>'+
   '<details style="margin-top:8px"><summary class="muted">Ver lo que se va a agregar</summary><ul>'+lista+'</ul></details>';
+$('b2').onclick=function(){location.href=URL.createObjectURL(new Blob([data],{type:'text/calendar'}));};
 $('dl').onclick=function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'text/calendar'}));a.download='ShiftOnDuty-'+(D.sg||'turnos')+'.ics';document.body.appendChild(a);a.click();
   setTimeout(function(){alert('Abre la app Archivos → Descargas → toca ShiftOnDuty-'+(D.sg||'turnos')+'.ics → Agregar todo.')},600);};
 })();
