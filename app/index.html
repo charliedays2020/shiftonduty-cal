@@ -226,7 +226,7 @@ input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;min-wid
 const $=id=>document.getElementById(id);
 function ask(m){return new Promise(res=>{const bg=document.getElementById('askBg');document.getElementById('askMsg').textContent=m;bg.hidden=false;
   const fin=v=>{bg.hidden=true;si.onclick=no.onclick=null;res(v)};const si=document.getElementById('askSi'),no=document.getElementById('askNo');si.onclick=()=>fin(true);no.onclick=()=>fin(false);si.focus();});}
-const APPV='1.8.4',AUTOR='charlied@ys';const KEY='pendientes-v1';
+const APPV='1.8.5',AUTOR='charlied@ys';const KEY='pendientes-v1';
 const DIA=['dom','lun','mar','mié','jue','vie','sáb'],MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const CATS=[['casa','🏠 Casa'],['carro','🚗 Carro'],['personal','👤 Personal'],['trabajo','💼 Trabajo'],['pagos','💵 Pagos']];
 let S={tareas:[],super:[],freq:{},venc:[],vNoms:[],cfg:{hora:'08:00'}};
@@ -682,7 +682,7 @@ const fechaDe=(mk,d)=>new Date(Math.floor(mk/12),mk%12,d);
 function renderT(){const box=$('vU');if(!box)return;
   if(!T.sg){box.innerHTML='<div class="tsetup"><b>¿Cuáles son tus siglas?</b><span class="hint">Las mismas del horario oficial (ej. CD). Así la app te muestra solo tus turnos.</span><form id="tSgF" class="add"><input id="tSg" maxlength="4" placeholder="Ej. CD" style="text-transform:uppercase"><button type="submit">✔</button></form></div>';return}
   const meses=Object.values(T.meses).sort((a,b)=>a.mk-b.mk);const nom=I().people.get(T.sg)||'';
-  let h='<div class="thead"><div><b>'+esc(T.sg)+'</b> '+(nom?'· '+esc(nom.replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(T.sg)+'</span>':'')+'<div class="hint">'+(meses.length?meses.map(m=>MESL[m.month]+' '+m.year+(m.version?' V'+m.version:'')).join(' · '):'Sin horario cargado')+'</div></div><div class="tbtns"><label class="btn small" for="tPdf">Cargar horario</label><label class="btn small ghost" for="tQr">📷 Escanear QR</label><input type="file" id="tQr" accept="image/*" capture="environment" hidden>'+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tVer">📄 Ver horario</button>':'')+'<input type="file" id="tPdf" accept="application/pdf,.pdf" hidden><button class="link" id="tSgCh" type="button">Cambiar siglas</button></div></div>';
+  let h='<div class="thead"><div><b>'+esc(T.sg)+'</b> '+(nom?'· '+esc(nom.replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(T.sg)+'</span>':'')+'<div class="hint">'+(meses.length?meses.map(m=>MESL[m.month]+' '+m.year+(m.version?' V'+m.version:'')).join(' · '):'Sin horario cargado')+'</div></div><div class="tbtns"><label class="btn small" for="tPdf">Cargar horario</label><label class="btn small ghost" for="tQr">📷 Escanear QR</label><input type="file" id="tQr" accept="image/*" capture="environment" hidden><label class="btn small ghost" for="tQr2">🖼️ QR de WhatsApp / galería</label><input type="file" id="tQr2" accept="image/*" hidden>'+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tVer">📄 Ver horario</button>':'')+'<input type="file" id="tPdf" accept="application/pdf,.pdf" hidden><button class="link" id="tSgCh" type="button">Cambiar siglas</button></div></div>';
   if(!meses.length){h+='<div class="empty">Carga el <b>PDF del horario oficial</b> del mes. Cuando publiquen otra versión (V2, V3…), cárgala igual y la app actualiza tus turnos y te dice qué cambió.</div>';box.innerHTML=h;return}
   if(nom===''){h+='<div class="empty">No encontré la sigla <b>'+esc(T.sg)+'</b> en el horario. Revisa que sea la correcta.</div>';}
   {const rr=T.real&&T.real[tMes||mkHoy()];if(rr){const f=new Date(rr.ts);h+='<div class="hint" style="margin:-4px 2px 8px">📋 Horario real de la Checklist: '+esc(DIA[f.getDay()]+' '+f.getDate()+' '+MES[f.getMonth()]+' '+pad(f.getHours())+':'+pad(f.getMinutes()))+' · por '+esc(rr.por)+' · '+(rr.ent||[]).length+' cambios</div>';}}
@@ -907,7 +907,7 @@ function aplicarQR(txt){const [cab,cuerpo='']=String(txt).split('\n');const p=ca
   $('bg').hidden=false;$('swSheet').hidden=false;$('swTabs').innerHTML='';$('swHead').innerHTML='📋 Horario real recibido<small>'+esc(MESL[mes]+' '+yr)+' · '+ent.length+' cambios · enviado por '+esc(por)+'</small>';
   $('swBody').innerHTML=(mios.length?'<p><b>Te afectan:</b></p><ul class="chg">'+mios.map(e=>'<li><span class="rel">'+esc(e.rel+(e.ex?' ✨':'')+(e.ho?' 📞':''))+'</span> · '+esc(e.code)+' '+esc(fCorta(mk,e.d))+'</li>').join('')+'</ul>':'<p>✔ Ningún cambio te afecta este mes.</p>')+
     (ent.length?'<details class="talm"><summary><b>Todos los cambios ('+ent.length+')</b><span></span></summary><ul class="chg">'+ent.map(e=>'<li><span class="rel">'+esc(e.rel+(e.ex?' ✨':'')+(e.ho?' 📞':''))+'</span> · '+esc(e.code)+' '+esc(fCorta(mk,e.d))+'</li>').join('')+'</ul></details>':'')+'<p class="hint">Tu calendario, "¿Quién me cubre?" y tus alarmas ya usan el horario real.</p>';}
-document.addEventListener('change',async e=>{if(e.target.id!=='tQr')return;const f=e.target.files[0];e.target.value='';if(!f)return;toast('Leyendo el QR…');
+document.addEventListener('change',async e=>{if(e.target.id!=='tQr'&&e.target.id!=='tQr2')return;const f=e.target.files[0];e.target.value='';if(!f)return;toast('Leyendo el QR…');
   try{const t=await leerQR(f);if(!t){toast('No encontré un QR en la foto. Acércate más y que salga completo y nítido.');return}aplicarQR(t);}
   catch(err){toast(err&&err.message==='script'?'Necesito internet la primera vez para leer QR.':'No pude leer la foto.');}});
 window.__aplicarQR=aplicarQR;
@@ -1037,6 +1037,7 @@ const NOV=['🗓️ El calendario es la vista principal. Toca un día para ver t
   '💾 Respaldo completo en ⚙️ Ajustes: guarda también turnos, cambios y deudas.',
   '📷 Vencimientos: tómale foto a tu documento y la app lee el tipo y las fechas (Android, sin internet). Siempre revisa antes de guardar.',
   '📋 iPhone: lee tus documentos con Texto en vivo (Copiar todo → Pegar) y la app llena el tipo y las fechas.',
+  '🖼️ Cambios por WhatsApp: el supervisor manda la imagen del QR y tú la abres con “QR de WhatsApp / galería” en Turnos.',
   '📅 iPhone: botón “Pasar al Calendario” en Turnos. Tus turnos, eventos y vencimientos quedan en el Calendario con sus avisos, aunque la app esté cerrada.',
   '🚗 Licencia de conducir y 📌 Otro documento (pasaporte, visa, DNI…) con aviso desde 6 meses antes si lo eliges.'];
 function novedades(){let v='';try{v=localStorage.getItem('sod-nov')||''}catch(_){}if(v===APPV)return;try{localStorage.setItem('sod-nov',APPV)}catch(_){}
