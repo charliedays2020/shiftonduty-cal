@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1B63C4">
 <title>ShiftOnDuty</title>
-<link rel="manifest" href="manifest.json"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/icon-180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="SOD Prueba"><meta name="robots" content="noindex,nofollow"><style>#bExp{display:none!important}</style>
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/icon-180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="ShiftOnDuty"><meta name="robots" content="noindex,nofollow"><style>#bExp{display:none!important}</style>
 <style>
 :root{
   --bg:#F4F5F1;--surface:#FFFFFF;--ink:#1A211D;--muted:#5F6B64;--line:#DCE1DC;--soft:#ECEFEA;
@@ -146,6 +146,23 @@ input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;min-wid
 .vpages{touch-action:pan-x pan-y}
 .vpage{position:relative;margin:0 auto 10px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.4)}
 .vhl{position:absolute;left:0;right:0;background:rgba(255,214,0,.22);mix-blend-mode:multiply;border-left:4px solid #E0A400;pointer-events:none}
+
+/* Fondo fotográfico de aeropuerto, integrado localmente en APK. Solo maquillaje. */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body{background-color:#061529;background-image:linear-gradient(180deg,rgba(2,11,25,.25),rgba(2,11,25,.18) 45%,rgba(2,11,25,.55)),url("airport-photo.jpg");background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed}}
+:root[data-theme="dark"] body{background-color:#061529;background-image:linear-gradient(180deg,rgba(2,11,25,.25),rgba(2,11,25,.18) 45%,rgba(2,11,25,.55)),url("airport-photo.jpg");background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed}
+.solb{background:#E5484D;color:#fff;border-radius:10px;padding:0 6px;font-size:12px;margin-left:2px;text-shadow:none}
+.sol{border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;background:var(--card)}.sol.gris{opacity:.55}
+.sst{font-size:11px;font-weight:700;border-radius:7px;padding:1px 7px;margin-left:4px;white-space:nowrap}.sst.ab{background:#3A2D17;color:#E3AE55}.sst.ac{background:#173A27;color:#5BC489}.sst.of{background:#17304A;color:#7DB4F2}.sst.no{background:#3A1F1F;color:#E37A6E}.sst.ve{background:#2A2A2A;color:#999}
+.sol .row2{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 0;border-top:1px solid var(--line)}
+/* fondo con foto: botones de contorno y enlaces legibles sobre la imagen */
+.btn:not(.ghost),.chips button[aria-pressed="true"],button[aria-pressed="true"]{text-shadow:none!important}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body{text-shadow:0 1px 4px rgba(0,0,0,.85)}:root:not([data-theme="light"]) .btn.ghost{background:rgba(6,21,41,.82)}:root:not([data-theme="light"]) .link{background:rgba(6,21,41,.72);border-radius:8px;padding:2px 8px}}
+:root[data-theme="dark"] body{text-shadow:0 1px 4px rgba(0,0,0,.85)}:root[data-theme="dark"] .btn.ghost{background:rgba(6,21,41,.82)}:root[data-theme="dark"] .link{background:rgba(6,21,41,.72);border-radius:8px;padding:2px 8px}
+:root[data-theme="light"] body{background-image:none}
+
+/* vidrio transparente sobre la foto (modo oscuro): botones de arriba, tarjetas Hoy/Mañana y pestañas */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tbtns .btn,:root:not([data-theme="light"]) .tbtns .link{background:rgba(20,28,24,.42)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.28)!important;color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.8)!important;border-radius:10px!important;padding:8px 12px!important;font-size:14px!important}:root:not([data-theme="light"]) .tcard{background:rgba(20,28,24,.38)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.28)!important;color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.8)!important}:root:not([data-theme="light"]) .tcard *{color:#fff!important}:root:not([data-theme="light"]) .tabs{background:rgba(20,28,24,.35)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-color:rgba(255,255,255,.22)!important}:root:not([data-theme="light"]) .tabs button{text-shadow:0 1px 3px rgba(0,0,0,.8)}:root:not([data-theme="light"]) .tabs button[aria-pressed="true"],:root:not([data-theme="light"]) .tabs button[aria-selected="true"]{background:rgba(255,255,255,.16)!important}}
+:root[data-theme="dark"] .tbtns .btn,:root[data-theme="dark"] .tbtns .link{background:rgba(20,28,24,.42)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.28)!important;color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.8)!important;border-radius:10px!important;padding:8px 12px!important;font-size:14px!important}:root[data-theme="dark"] .tcard{background:rgba(20,28,24,.38)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.28)!important;color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.8)!important}:root[data-theme="dark"] .tcard *{color:#fff!important}:root[data-theme="dark"] .tabs{background:rgba(20,28,24,.35)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-color:rgba(255,255,255,.22)!important}:root[data-theme="dark"] .tabs button{text-shadow:0 1px 3px rgba(0,0,0,.8)}:root[data-theme="dark"] .tabs button[aria-pressed="true"],:root[data-theme="dark"] .tabs button[aria-selected="true"]{background:rgba(255,255,255,.16)!important}
 </style>
 </head>
 <body>
@@ -204,7 +221,7 @@ input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;min-wid
     <div class="box"><b>Eventos sin hora: avisarme a las</b><input type="time" id="cHora" style="padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--surface)"></div>
     <div class="box" id="nBox" hidden><b>Alarmas en el teléfono</b><button class="btn ghost" id="nSetup" type="button" style="margin:4px 0 8px">Revisar permisos de alarmas</button><div class="hint" id="nState"></div>
       <div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn ghost" id="nAsk" type="button">Permitir avisos</button><button class="btn ghost" id="nExact" type="button" hidden>Avisos a la hora exacta</button><button class="btn ghost" id="nTest" type="button">Probar (10 s)</button></div><label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input type="checkbox" id="nReloj"> <span><b>⌚ Enviar alarmas a mi reloj inteligente</b><br><small class="hint">Garmin, Samsung, Xiaomi/Amazfit, Huawei y otros. Los avisos dejan de quedar fijos en el celular para que el reloj los reciba. En la app de tu reloj permite las notificaciones de ShiftOnDuty.</small></span></label></div>
-    <div class="box"><b>Respaldo completo</b><div class="hint">Guarda tus siglas, horarios, cambios, deudas, horario real, vencimientos, eventos y alarmas. Úsalo antes de cambiar de celular.</div><div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn ghost" id="bExp" type="button">Descargar respaldo</button><label class="btn ghost" for="bImp">Importar archivo</label><input type="file" id="bImp" accept=".json,application/json" hidden><button class="btn ghost" id="bCopy" type="button">📋 Copiar respaldo</button><button class="btn ghost" id="bPaste" type="button">📥 Pegar respaldo</button></div><textarea id="bTxt" hidden rows="4" placeholder="Pega aquí el respaldo copiado y toca Importar texto" style="width:100%;margin-top:8px;font-size:13px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;padding:8px"></textarea><button class="btn small" id="bTxtGo" type="button" hidden style="margin-top:6px">Importar texto</button><div class="hint" id="bMsg"></div></div>
+    <div class="box" id="nubeBox"><b>☁️ Nube (prueba)</b><div class="hint" id="nubeEst">Sin conectar. Al entrar, los cambios que publique el supervisor desde la Checklist llegan solos.</div><div id="nubeForm"><input id="nubeMail" type="email" autocomplete="username" placeholder="Correo (ej. iris@prueba.com)" style="width:100%;font-size:16px;padding:10px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><input id="nubePass" type="password" autocomplete="current-password" placeholder="Contraseña" style="width:100%;font-size:16px;padding:10px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><button type="button" class="btn" id="nubeEntrar" style="width:100%;margin-top:4px">☁️ Entrar</button><input id="nubeSiglas" maxlength="4" placeholder="Siglas (solo registro)" style="width:100%;font-size:16px;padding:10px;margin:8px 0 4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;text-transform:uppercase"><button type="button" class="btn ghost" id="nubeRegistrar">Solicitar acceso por primera vez</button><button type="button" class="btn ghost" id="nubeRecuperar">Olvidé mi contraseña</button></div><div id="nubeAdminPanel" hidden><b>Solicitudes de acceso</b><div id="nubeSolicitudes" class="hint">Cargando…</div><button type="button" class="btn ghost" id="nubeRevisar">Actualizar solicitudes</button></div><button type="button" class="btn ghost" id="nubeSalir" hidden>Salir de la nube</button></div><div class="box"><b>Respaldo completo</b><div class="hint">Guarda tus siglas, horarios, cambios, deudas, horario real, vencimientos, eventos y alarmas. Úsalo antes de cambiar de celular.</div><div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn ghost" id="bExp" type="button">Descargar respaldo</button><label class="btn ghost" for="bImp">Importar archivo</label><input type="file" id="bImp" accept=".json,application/json" hidden><button class="btn ghost" id="bCopy" type="button">📋 Copiar respaldo</button><button class="btn ghost" id="bPaste" type="button">📥 Pegar respaldo</button></div><textarea id="bTxt" hidden rows="4" placeholder="Pega aquí el respaldo copiado y toca Importar texto" style="width:100%;margin-top:8px;font-size:13px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;padding:8px"></textarea><button class="btn small" id="bTxtGo" type="button" hidden style="margin-top:6px">Importar texto</button><div class="hint" id="bMsg"></div></div>
   </div>
   <div class="box autor"><b>Acerca de</b><div><b>ShiftOnDuty</b> <span id="appV2"></span></div><div>Creada por <b>charlied@ys</b></div><div class="hint">© 2026 charlied@ys · Todos los derechos reservados. Se comparte para uso personal; no se permite venderla, modificarla ni publicarla con otro nombre.</div></div>
   <div class="acts"><button type="button" class="btn" id="cClose">Listo</button></div>
@@ -226,7 +243,7 @@ input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;min-wid
 const $=id=>document.getElementById(id);
 function ask(m){return new Promise(res=>{const bg=document.getElementById('askBg');document.getElementById('askMsg').textContent=m;bg.hidden=false;
   const fin=v=>{bg.hidden=true;si.onclick=no.onclick=null;res(v)};const si=document.getElementById('askSi'),no=document.getElementById('askNo');si.onclick=()=>fin(true);no.onclick=()=>fin(false);si.focus();});}
-const APPV='1.8-prueba23',AUTOR='charlied@ys';const KEY='pendientes-v1';
+const APPV='1.8-firebase49',AUTOR='charlied@ys';const KEY='pendientes-v1';
 const DIA=['dom','lun','mar','mié','jue','vie','sáb'],MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const CATS=[['casa','🏠 Casa'],['carro','🚗 Carro'],['personal','👤 Personal'],['trabajo','💼 Trabajo'],['pagos','💵 Pagos']];
 let S={tareas:[],super:[],freq:{},venc:[],vNoms:[],cfg:{hora:'08:00'}};
@@ -247,7 +264,7 @@ function nextFrom(d,rep){const u=rep[0],n=+rep.slice(1);if(u==='d')return addD(d
   const t=new Date(d.getFullYear(),d.getMonth()+n,1);return new Date(t.getFullYear(),t.getMonth(),Math.min(d.getDate(),new Date(t.getFullYear(),t.getMonth()+1,0).getDate()));}
 
 /* reloj */
-function tick(){const n=new Date();$('clock').innerHTML=pad(n.getHours())+':'+pad(n.getMinutes())+'<small>'+pad(n.getUTCHours())+pad(n.getUTCMinutes())+'Z</small>';
+function tick(){const n=new Date();const h12=n.getHours()%12||12;$('clock').innerHTML=pad(n.getUTCHours())+':'+pad(n.getUTCMinutes())+'<span style="font-size:.55em;margin-left:2px">Z</span><small>'+h12+':'+pad(n.getMinutes())+' '+(n.getHours()<12?'AM':'PM')+' local</small>';
   const s=n.toLocaleDateString('es-HN',{weekday:'long',day:'numeric',month:'long'});$('date').textContent=s.charAt(0).toUpperCase()+s.slice(1);
   const d=iso(today());if(d!==tick.last){tick.last=d;render();if(typeof renderT==='function')try{renderT()}catch(_){}}}
 setInterval(tick,10000);
@@ -682,10 +699,10 @@ const fechaDe=(mk,d)=>new Date(Math.floor(mk/12),mk%12,d);
 function renderT(){const box=$('vU');if(!box)return;
   if(!T.sg){box.innerHTML='<div class="tsetup"><b>¿Cuáles son tus siglas?</b><span class="hint">Las mismas del horario oficial (ej. CD). Así la app te muestra solo tus turnos.</span><form id="tSgF" class="add"><input id="tSg" maxlength="4" placeholder="Ej. CD" style="text-transform:uppercase"><button type="submit">✔</button></form></div>';return}
   const meses=Object.values(T.meses).sort((a,b)=>a.mk-b.mk);const nom=I().people.get(T.sg)||'';
-  let h='<div class="thead"><div><b>'+esc(T.sg)+'</b> '+(nom?'· '+esc(nom.replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(T.sg)+'</span>':'')+'<div class="hint">'+(meses.length?meses.map(m=>MESL[m.month]+' '+m.year+(m.version?' V'+m.version:'')).join(' · '):'Sin horario cargado')+'</div></div><div class="tbtns"><label class="btn small" for="tPdf">Cargar horario</label><button type="button" class="btn small ghost" id="tPegar">📋 Pegar cambios</button><label class="btn small ghost" for="tQr">📷 Escanear QR</label><input type="file" id="tQr" accept="image/*" capture="environment" hidden><label class="btn small ghost" for="tQr2">🖼️ QR de WhatsApp / galería</label><input type="file" id="tQr2" accept="image/*" hidden>'+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tVer">📄 Ver horario</button>':'')+'<input type="file" id="tPdf" accept="application/pdf,.pdf" hidden><button class="link" id="tSgCh" type="button">Cambiar siglas</button></div></div>';
+  let h='<div class="thead"><div><b>'+esc(T.sg)+'</b> '+(nom?'· '+esc(nom.replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(T.sg)+'</span>':'')+'<div class="hint">'+(meses.length?meses.map(m=>MESL[m.month]+' '+m.year+(m.version?' V'+m.version:'')).join(' · '):'Sin horario cargado')+'</div></div><div class="tbtns"><label class="btn small" for="tPdf">Cargar horario</label><label class="btn small ghost" for="tQr">📷 Escanear QR</label><input type="file" id="tQr" accept="image/*" capture="environment" hidden>'+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tVer">📄 Ver horario</button>':'')+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tCmb">⇄ Ver cambios</button>':'')+(solActivo()?'<button type="button" class="btn small ghost" id="tSol">📨 Solicitudes'+(solPend()?' <span class="solb">'+solPend()+'</span>':'')+'</button>':'')+'<input type="file" id="tPdf" accept="application/pdf,.pdf" hidden><button class="link" id="tSgCh" type="button">Cambiar siglas</button></div></div>';
   if(!meses.length){h+='<div class="empty">Carga el <b>PDF del horario oficial</b> del mes. Cuando publiquen otra versión (V2, V3…), cárgala igual y la app actualiza tus turnos y te dice qué cambió.</div>';box.innerHTML=h;return}
   if(nom===''){h+='<div class="empty">No encontré la sigla <b>'+esc(T.sg)+'</b> en el horario. Revisa que sea la correcta.</div>';}
-  {const rr=T.real&&T.real[tMes||mkHoy()];if(rr){const f=new Date(rr.ts);h+='<div class="hint" style="margin:-4px 2px 8px">📋 Horario real de la Checklist: '+esc(DIA[f.getDay()]+' '+f.getDate()+' '+MES[f.getMonth()]+' '+pad(f.getHours())+':'+pad(f.getMinutes()))+' · por '+esc(rr.por)+' · '+(rr.ent||[]).length+' cambios</div>';}}
+  {const rr=T.real&&T.real[tMes||mkHoy()];if(rr){const f=new Date(rr.ts);h+='<div class="hint" style="margin:-4px 2px 8px">'+(rr.nube?'☁️ Horario real (nube): ':'📋 Horario real de la Checklist: ')+esc(DIA[f.getDay()]+' '+f.getDate()+' '+MES[f.getMonth()]+' '+pad(f.getHours())+':'+pad(f.getMinutes()))+' · por '+esc(rr.por)+' · '+(rr.ent||[]).length+' cambios ('+qrPendientes(tMes||mkHoy(),rr.ent).length+' por venir)</div>';}}
   const t=today(),mk0=mkHoy(),d0=t.getDate();
   const card=(lbl,k)=>{const [mk,d]=norm3(mk0,d0+k);const cs=codesOn(T.sg,mk,d).codes;return '<button type="button" class="tcard '+claseDia(cs)+'" data-day="'+mk+'|'+d+'"><span>'+lbl+'</span><b>'+esc(T.meses[mk]?descDia(T.sg,mk,d):'Sin horario')+'</b></button>';};
   h+=(window.__vencAviso?window.__vencAviso():'');
@@ -767,8 +784,9 @@ function pintarCambio(){const {mk,day,code}=swCtx;const f=fechaDe(mk,day);
   const fd=(m,d)=>{const x=fechaDe(m,d);return DIA[x.getDay()]+' '+d+' '+MES[x.getMonth()]};
   const det=r=>swTab==='cubrir'?esc(r.m):(esc(r.sg)+' te hace tu <b>'+esc(code)+'</b> del '+esc(fd(mk,day))+' · tú le haces su <b>'+esc(r.c2)+'</b> del '+esc(fd(r.m2||mk,r.d2))+
      '<br>Él/ella: '+esc(r.ella.m)+'<br>Tú: '+esc(r.yo.m));
-  const tarj=(r,cls)=>'<div class="swc '+cls+'"><div class="swt"><b>'+esc(r.sg)+'</b> · '+esc((r.n||'').replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(r.sg)+'</span></div><div class="swm">'+det(r)+'</div>'+(cls!=='no'?'<a class="link" onclick="event.stopPropagation()" href="https://wa.me/?text='+encodeURIComponent(msgWA(r))+'" target="_blank" rel="noopener">Enviar por WhatsApp</a><br>'+(swTab==='cubrir'?'<button type="button" class="btn small reg" data-reg="'+res.indexOf(r)+'|leDebo">✔ Me cubre · Pendiente de pago</button> <button type="button" class="btn small ghost reg" data-reg="'+res.indexOf(r)+'|pagado">✔ Me cubre · Turno pagado</button>':'<button type="button" class="btn small reg" data-reg="'+res.indexOf(r)+'|int">✔ Ya acordamos · Registrar intercambio</button>')+'':'')+'</div>';
+  const tarj=(r,cls)=>'<div class="swc '+cls+'"><div class="swt"><b>'+esc(r.sg)+'</b> · '+esc((r.n||'').replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(r.sg)+'</span></div><div class="swm">'+det(r)+'</div>'+(cls!=='no'?'<a class="link" onclick="event.stopPropagation()" href="https://wa.me/?text='+encodeURIComponent(msgWA(r))+'" target="_blank" rel="noopener">Enviar por WhatsApp</a><br>'+(swTab==='cubrir'&&solActivo()?'<button type="button" class="btn small" data-solp="'+res.indexOf(r)+'">📨 Pedirle por la app</button><br>':'')+(swTab==='cubrir'?'<button type="button" class="btn small reg" data-reg="'+res.indexOf(r)+'|leDebo">✔ Me cubre · Pendiente de pago</button> <button type="button" class="btn small ghost reg" data-reg="'+res.indexOf(r)+'|pagado">✔ Me cubre · Turno pagado</button>':'<button type="button" class="btn small reg" data-reg="'+res.indexOf(r)+'|int">✔ Ya acordamos · Registrar intercambio</button>')+'':'')+'</div>';
   let h='<p class="hint">Según el horario publicado. El cambio lo aprueba el supervisor.</p>';
+  if(swTab==='cubrir'&&solActivo()&&ok.length)h+='<p><button type="button" class="btn" data-solall="1">📨 Pedir a todos los que pueden ('+ok.length+')</button></p>';
   h+='<div class="swcol ok"><b>🟢 Pueden ('+ok.length+')</b>'+(ok.map(r=>tarj(r,'ok')).join('')||'<div class="hint">Nadie.</div>')+'</div>';
   if(rv.length)h+='<div class="swcol rev"><b>🟡 Para revisar ('+rv.length+')</b>'+rv.map(r=>tarj(r,'rev')).join('')+'</div>';
   if(swTab!=='otro')h+='<details class="swcol no"><summary><b>🔴 No pueden ('+no.length+')</b></summary>'+no.map(r=>'<div class="swc no"><div class="swt"><b>'+esc(r.sg)+'</b> · '+esc((r.n||'').replace(/\s*\([^)]*\)/,''))+(r.c2?' · su '+esc(r.c2):'')+'</div><div class="swm">'+esc(swTab==='cubrir'?r.m:(r.ella.e==='no'?'Él/ella: '+r.ella.m:'Tú: '+r.yo.m))+'</div></div>').join('')+'</details>';
@@ -850,6 +868,7 @@ document.addEventListener('change',async e=>{if(e.target.id==='bF'){if(e.target.
     let cambios=[];if(prev){const old=new Map(),nw=new Map();for(const r of prev.rows)if((r.s||siglaDe(r.n))===T.sg)old.set(r.d,(old.get(r.d)||[]).concat(r.c));for(const r of h.rows)if(r.s===T.sg)nw.set(r.d,(nw.get(r.d)||[]).concat(r.c));
       for(let d=1;d<=dimOf(h.mk);d++){const a=(old.get(d)||[]).join(' '),b=(nw.get(d)||[]).join(' ');if(a!==b)cambios.push(DIA[fechaDe(h.mk,d).getDay()]+' '+d+': ahora '+(b||'—')+' (antes '+(a||'—')+')');}}
     guardarPdf(h.mk,h._bytes);delete h._bytes;const rec=await reconciliar(h);T.meses[h.mk]=h;for(const k of Object.keys(T.meses))if(+k<mkHoy()-3)delete T.meses[k];T.cambios=(T.cambios||[]).filter(c=>c.ovr.some(o=>T.meses[o.mk]));tMes=h.mk;saveT();
+    if(T.nubePend&&T.nubePend[h.mk]){const c=T.nubePend[h.mk];setTimeout(()=>nubeAplicar({codigo:c}),2500);}
     const mine=h.rows.filter(r=>r.s===T.sg).length;
     $('bg').hidden=false;$('swSheet').hidden=false;$('swHead').innerHTML='Horario cargado<small>'+esc(MESL[h.month]+' '+h.year+(h.version?' · V'+h.version:''))+'</small>';$('swTabs').innerHTML='';
     $('swBody').innerHTML='<p>'+h.rows.length+' asignaciones leídas · '+I().people.size+' personas.</p>'+(mine?'':'<p class="lt">No encontré tu sigla '+esc(T.sg)+' en este horario.</p>')+
@@ -892,48 +911,248 @@ async function leerQR(file){const url=URL.createObjectURL(file);try{const img=aw
       const q=window.jsQR(cx.getImageData(0,0,w,h).data,w,h,{inversionAttempts:'attemptBoth'});if(q&&q.data)return q.data;}
     return null;}finally{URL.revokeObjectURL(url);}}
 let qrScan=null;
-/* 📋 cambios copiados de Teams (o WhatsApp): busca el código SOD1 dentro del texto pegado */
-function codigoDeTexto(t){t=String(t||'');const i=t.indexOf('SOD1|');if(i<0)return null;const s=t.slice(i);
-  const m=/^SOD1\|\d{4}\|[^|\s]+\|\d+\/\d+\|[^|\s]+\|[A-Za-z]{0,4}/.exec(s);if(!m)return null;
-  const cuerpo=s.slice(m[0].length).replace(/^[ \t]*\r?\n/,'').split(/\r?\n[ \t]*\r?\n/)[0].replace(/\s*\r?\n\s*/g,'').trim();
-  return m[0]+'\n'+cuerpo;}
-function aplicarTexto(t){const c=codigoDeTexto(t);if(!c){toast('No encontré los cambios. Copia el mensaje de Teams que empieza con 📋 Cambios y vuelve a tocar Pegar.');return false}aplicarQR(c);return true;}
-function hojaPegar(){$('toast').hidden=true;$('bg').hidden=false;$('swSheet').hidden=false;$('swTabs').innerHTML='';
-  $('swHead').innerHTML='📋 Pegar cambios de turno<small>Copiados del chat de Teams (o WhatsApp)</small>';
-  $('swBody').innerHTML='<ol class="hint" style="padding-left:18px;margin:4px 0 8px"><li>En Teams, mantén el dedo sobre el mensaje <b>📋 Cambios…</b> → <b>Copiar</b>.</li><li>Mantén el dedo en el cuadro de abajo → <b>Pegar</b>.</li></ol>'+
-    '<textarea id="pegaTxt" rows="6" placeholder="Pega aquí el mensaje de Teams" style="width:100%;font-size:16px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"></textarea>'+
-    '<button type="button" class="btn" id="pegaOk" style="width:100%;margin-top:8px">✔ Aplicar cambios</button>';}
+/* ☁️ NUBE (prueba): los cambios que publica la Checklist en Firebase llegan solos */
+const FBV='10.14.1',FBCFG={apiKey:"AIzaSyAocw23Mre0kl-FScmjW8D79q3wnlJOYxc",authDomain:"shiftonduty-b4cf2.firebaseapp.com",projectId:"shiftonduty-b4cf2",storageBucket:"shiftonduty-b4cf2.firebasestorage.app",messagingSenderId:"674920757076",appId:"1:674920757076:web:5b2c0a29ebf2db29cabac1"};
+const nube={app:null,auth:null,db:null,unsub:null,err:''};
+function cargaScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('script'));document.head.appendChild(s);});}
+async function nubeSDK(){if(window.firebase&&window.firebase.firestore)return;for(const m of ['app','auth','firestore']){try{await cargaScript('vendor/firebase/firebase-'+m+'-compat.js')}catch(_){await cargaScript('https://www.gstatic.com/firebasejs/'+FBV+'/firebase-'+m+'-compat.js')}}}
+function nubeEstado(msg){const u=nube.auth&&nube.auth.currentUser,e=$('nubeEst');if(!e)return;
+  e.textContent=msg||(u?'✔ Sesión: '+u.email+' · verificando autorización':'Sin conectar. Inicia sesión o solicita acceso.');
+  $('nubeForm').hidden=!!u;$('nubeSalir').hidden=!u;}
+async function nubeRol(){
+ const u=nube.auth&&nube.auth.currentUser;if(!u||!nube.db)return null;
+ try{const d=await nube.db.collection('miembros').doc(u.uid).get();return d.exists?d.data():null}catch(e){nubeEstado('⚠️ No se pudo verificar el acceso ('+(e.code||e.message)+')');return null;}
+}
+async function nubeSolicitudes(){
+ const p=$('nubeSolicitudes');if(!p)return;p.textContent='Consultando…';
+ try{const q=await nube.db.collection('miembros').where('rol','==','pendiente').get();
+  p.innerHTML='';if(q.empty){p.textContent='Sin solicitudes pendientes.';return;}
+  q.forEach(d=>{const x=d.data(),item=document.createElement('div');item.style='padding:9px 0;border-bottom:1px solid var(--line)';
+   const info=document.createElement('span');info.textContent=(x.siglas||'Sin siglas')+' · '+(x.correo||d.id)+' ';
+   const b=document.createElement('button');b.type='button';b.className='btn small';b.textContent='Aprobar lector';
+   b.onclick=async()=>{if(!confirm('¿Verificaste personalmente que '+(x.correo||d.id)+' pertenece al personal autorizado?'))return;
+    b.disabled=true;try{await nube.db.collection('miembros').doc(d.id).update({rol:'lector'});toast('✔ Acceso aprobado');await nubeSolicitudes();}
+    catch(e){b.disabled=false;toast('No se pudo aprobar: '+(e.code||e.message));}};
+   item.append(info,b);p.appendChild(item);});
+ }catch(e){p.textContent='No pude consultar solicitudes: '+(e.code||e.message);}
+}
+async function nubeIniciar(){await nubeSDK();if(nube.app)return;nube.app=firebase.initializeApp(FBCFG);nube.auth=firebase.auth();nube.db=firebase.firestore();
+ try{await nube.db.enablePersistence()}catch(_){}
+ nube.auth.onAuthStateChanged(async u=>{
+  if(nube.unsub){nube.unsub();nube.unsub=null;}
+  $('nubeAdminPanel').hidden=true;nube.rol=null;nube.sg='';solParar();nubeEstado();if(!u)return;
+  try{localStorage.setItem('sod-nube','1')}catch(_){}
+  const m=await nubeRol();if(!nube.auth.currentUser||nube.auth.currentUser.uid!==u.uid)return;
+  if(!m||m.rol==='pendiente'){nubeEstado('⏳ Solicitud pendiente de aprobación. Tu información local sigue disponible.');setTimeout(()=>{if(nube.auth&&nube.auth.currentUser&&nube.auth.currentUser.uid===u.uid){void nubeRevisarAcceso();}},12000);return;}
+  if(m.rol!=='admin'&&m.rol!=='lector'){nubeEstado('⛔ Cuenta sin autorización para la nube.');return;}
+  await nubeActivarAcceso(u,m);
+ });
+}
+async function nubeRevisarAcceso(){
+ const u=nube.auth&&nube.auth.currentUser;if(!u||!nube.db)return;
+ const m=await nubeRol();if(!nube.auth.currentUser||nube.auth.currentUser.uid!==u.uid)return;
+ if(m&&(m.rol==='admin'||m.rol==='lector')){await nubeActivarAcceso(u,m);return;}
+ if(m&&m.rol==='pendiente'){nubeEstado('⏳ Solicitud pendiente de aprobación. Tu información local sigue disponible.');setTimeout(()=>{if(nube.auth&&nube.auth.currentUser&&nube.auth.currentUser.uid===u.uid)void nubeRevisarAcceso();},12000);}
+}
+async function nubeActivarAcceso(u,m){nube.rol=m.rol;nube.sg=String(m.siglas||'').toUpperCase();try{solIniciar()}catch(_){/* las solicitudes nunca deben frenar los cambios oficiales */}
+ if(nube.unsub){nube.unsub();nube.unsub=null;}
+ nubeEstado('✔ Conectado como '+u.email+' · rol '+m.rol+' · recibiendo cambios');
+ if(m.rol==='admin'){$('nubeAdminPanel').hidden=false;void nubeSolicitudes();}
+ nube.unsub=nube.db.collection('cambios').onSnapshot(qs=>{const ultimos=new Map();qs.forEach(doc=>{const d=doc.data(),cab=String(d.codigo||'').split('\n')[0].split('|');if(cab[0]!=='SOD1')return;const mk=(+cab[1])*12+MESES[normN(cab[2])],fecha=d.creadoEn&&d.creadoEn.toMillis?d.creadoEn.toMillis():0;const prev=ultimos.get(mk);if(!prev||fecha>prev.fecha||(fecha===prev.fecha&&doc.id>prev.id))ultimos.set(mk,{d,fecha,id:doc.id});});ultimos.forEach(({d,fecha})=>nubeAplicar(d,fecha));nubeEstado('✔ Conectado como '+u.email+' · rol '+m.rol+' · recibiendo cambios');},e=>nubeEstado('⚠️ No pude leer la nube ('+(e.code||e.message)+').'));
+}
+function nubeAplicar(d,fecha=0){if(!d||!d.codigo)return;const cab=String(d.codigo).split('\n')[0].split('|');if(cab[0]!=='SOD1')return;const yr=+cab[1],mes=MESES[normN(cab[2])];if(mes==null||!yr)return;
+  const mk=yr*12+mes,sello=cab[4];if(T.real&&T.real[mk]&&((T.real[mk].nubeFecha||0)>fecha||(T.real[mk].sello===sello&&T.real[mk].nube)))return;
+  if(!T.meses[mk]){T.nubePend=T.nubePend||{};if(T.nubePend[mk]!==d.codigo){T.nubePend[mk]=d.codigo;try{localStorage.setItem(TKEY,JSON.stringify(T))}catch(_){}toast('☁️ Llegaron cambios de '+MESL[mes]+' '+yr+'. Carga ese horario para verlos.');}return;}
+  if(T.nubePend)delete T.nubePend[mk];qrScan=null;aplicarQR(d.codigo,true);if(T.real&&T.real[mk]&&T.real[mk].sello===sello){T.real[mk].nube=1;T.real[mk].nubeFecha=fecha;saveT();}
+  const h=$('swHead');if(h&&!$('swSheet').hidden)h.innerHTML=h.innerHTML.replace('📋 Horario real recibido','☁️ Cambios recibidos de la nube');}
+const nubeErr=c=>({'auth/invalid-credential':'Correo o contraseña incorrectos.','auth/wrong-password':'Contraseña incorrecta.','auth/user-not-found':'Ese correo no está registrado.','auth/invalid-email':'Correo no válido.','auth/network-request-failed':'Sin internet. Intenta de nuevo.','auth/too-many-requests':'Demasiados intentos. Espera un momento.'}[c]||'No pude entrar ('+c+').');
 document.addEventListener('click',async e=>{
-  if(e.target.id==='tPegar'){let t='';try{t=await navigator.clipboard.readText()}catch(_){}if(t&&codigoDeTexto(t)){aplicarTexto(t);return}hojaPegar();return}
-  if(e.target.id==='pegaOk'){aplicarTexto(($('pegaTxt')||{}).value);}});
-/* Android: si copiaste el mensaje de Teams, al abrir la app se aplica solo (sin tocar nada) */
-let pegaVisto='';
-async function revisarCopiado(){const AJ=AJx();if(!AJ||!AJ.portapapeles)return;let t='';try{t=(await AJ.portapapeles()).texto||''}catch(_){return}
-  const c=codigoDeTexto(t);if(!c)return;const sello=c.split('\n')[0].split('|')[4];
-  if(pegaVisto===sello||Object.values(T.real||{}).some(r=>r.sello===sello))return;pegaVisto=sello;aplicarQR(c);}
-window.addEventListener('focus',()=>setTimeout(revisarCopiado,500));
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(revisarCopiado,800);});
-setTimeout(revisarCopiado,1500);
-document.addEventListener('input',e=>{if(e.target.id!=='pegaTxt')return;clearTimeout(e.target._t);e.target._t=setTimeout(()=>{if(codigoDeTexto(e.target.value))aplicarTexto(e.target.value);},500);});
-function aplicarQR(txt){const [cab,cuerpo='']=String(txt).split('\n');const p=cab.split('|');
+  if(e.target.id==='nubeEntrar'){const m=$('nubeMail').value.trim(),p=$('nubePass').value;if(!m||!p){nubeEstado('Escribe tu correo y contraseña.');return}
+    nubeEstado('Conectando…');try{await nubeIniciar();await nube.auth.signInWithEmailAndPassword(m,p);$('nubePass').value='';toast('☁️ Conectado a la nube');}
+    catch(err){nubeEstado(err&&err.message==='script'?'Sin internet: no pude cargar la nube.':nubeErr(err&&err.code));}}
+  if(e.target.id==='nubeRegistrar'){
+    const btn=$('nubeRegistrar');btn.disabled=true;
+    nubeEstado('⏳ Botón recibido. Validando datos…');
+    try{
+      const correo=$('nubeMail').value.trim().toLowerCase(),pass=$('nubePass').value,siglas=$('nubeSiglas').value.trim().toUpperCase();
+      if(!correo||pass.length<8||!/^[A-Z]{2,4}$/.test(siglas)){nubeEstado('Faltan datos: correo, contraseña nueva de 8 caracteres como mínimo y siglas de 2 a 4 letras.');return;}
+      nubeEstado('⏳ Cargando conexión Firebase…');await nubeIniciar();
+      nubeEstado('⏳ Creando cuenta…');
+      const cred=await nube.auth.createUserWithEmailAndPassword(correo,pass);
+      nubeEstado('⏳ Guardando solicitud…');
+      await nube.db.collection('miembros').doc(cred.user.uid).set({rol:'pendiente',correo:correo,siglas:siglas});
+      $('nubePass').value='';nubeEstado('⏳ Solicitud enviada. Espera aprobación del administrador.');toast('Solicitud registrada. Espera aprobación.');
+      void nubeRevisarAcceso();
+    }catch(err){nubeEstado('❌ Registro detenido: '+(err&&err.code||err&&err.message||'error desconocido')+'. '+(err&&err.message==='script'?'No se pudieron cargar los archivos de Firebase.':'Si el correo ya existe, usa Entrar.'));}
+    finally{btn.disabled=false;}
+  }
+  if(e.target.id==='nubeRecuperar'){const correo=$('nubeMail').value.trim();if(!correo){nubeEstado('Escribe primero tu correo.');return;}
+    try{await nubeIniciar();await nube.auth.sendPasswordResetEmail(correo);nubeEstado('Si el correo está registrado, recibirás instrucciones para recuperar tu contraseña.');}
+    catch(err){nubeEstado('No se pudo solicitar recuperación: '+(err.code||err.message));}}
+  if(e.target.id==='nubeRevisar')await nubeSolicitudes();
+  if(e.target.id==='nubeSalir'){try{await nube.auth.signOut()}catch(_){}try{localStorage.removeItem('sod-nube')}catch(_){}nubeEstado();}});
+try{if(localStorage.getItem('sod-nube')==='1')setTimeout(()=>nubeIniciar().catch(()=>{}),1500);}catch(_){}
+async function nubePublicarQR(codigo){
+ const u=nube.auth&&nube.auth.currentUser;
+ if(!u||!nube.db)return; /* sin sesión: el QR queda aplicado en este celular, sin avisos que confundan */
+ try{
+  const m=await nube.db.collection('miembros').doc(u.uid).get();
+  if(!m.exists||m.data().rol!=='admin')return; /* solo el admin publica; los lectores solo lo aplican en su celular */
+  await nube.db.collection('cambios').add({codigo,creadoEn:firebase.firestore.FieldValue.serverTimestamp(),publicadoPor:u.uid});
+  nubeEstado('✔ QR publicado en Firebase para los demás celulares.');toast('Cambio enviado a la nube.');
+ }catch(e){nubeEstado('⚠️ No se publicó el QR: '+(e.code||e.message));toast('QR guardado localmente; error al publicar: '+(e.code||e.message));}
+}
+/* Mostrar solamente cambios del día actual o posteriores; los realizados requieren estado explícito. */
+function qrPendientes(mk,ent){const hoy=today();return (ent||[]).filter(e=>Number.isInteger(e.d)&&e.d>=1&&e.d<=dimOf(mk)&&fechaDe(mk,e.d)>=hoy);}
+function aplicarQR(txt,desdeNube=false){const [cab,cuerpo='']=String(txt).split('\n');const p=cab.split('|');
   if(p[0]!=='SOD1'){toast('Ese QR no es de la Checklist CENAMER.');return}
   const yr=+p[1],mes=MESES[normN(p[2])],[i,n]=p[3].split('/').map(Number),sello=p[4],por=p[5]||'SUP';
   if(mes==null||!yr){toast('No entendí el mes del QR.');return}
   const mk=yr*12+mes;if(!T.meses[mk]){toast('Primero carga el horario de '+MESL[mes]+' '+yr+' y luego escanea el QR.');return}
+  {const prev=T.real&&T.real[mk],ns=parseInt(sello,36),ps=prev?parseInt(prev.sello,36):NaN;
+   if(prev&&isFinite(ns)&&isFinite(ps)&&ns<ps){qrScan=null;if(!desdeNube){const f=new Date(ps);toast('⛔ Ese QR es más viejo que el que ya tienes ('+DIA[f.getDay()]+' '+f.getDate()+' '+MES[f.getMonth()]+' '+pad(f.getHours())+':'+pad(f.getMinutes())+'). No lo apliqué para no revivir cambios cancelados.');}return}}
   if(!qrScan||qrScan.sello!==sello)qrScan={sello,n,mk,por,partes:{}};qrScan.partes[i]=cuerpo;
   const faltan=[];for(let k=1;k<=n;k++)if(qrScan.partes[k]==null)faltan.push(k);
   if(faltan.length){toast('✔ QR '+i+' de '+n+' leído. Falta'+(faltan.length>1?'n':'')+' el '+faltan.join(', ')+': toma la foto del siguiente.');return}
   const ent=[];for(let k=1;k<=n;k++)for(const ln of (qrScan.partes[k]||'').split(';')){if(!ln.trim())continue;const [d,code,o,a,rel,fl='']=ln.split(',');
     ent.push({d:+d,code:String(code).toUpperCase(),orig:o?o.split('/'):[],act:a?a.split('/'):[],rel:rel||'',ex:fl.includes('e'),ho:fl.includes('h')});}
-  T.real=T.real||{};T.real[mk]={sello,por,ts:Date.now(),ent};qrScan=null;tMes=mk;saveT();
-  const mios=ent.filter(e=>e.orig.includes(T.sg)||e.act.includes(T.sg));
-  $('bg').hidden=false;$('swSheet').hidden=false;$('swTabs').innerHTML='';$('swHead').innerHTML='📋 Horario real recibido<small>'+esc(MESL[mes]+' '+yr)+' · '+ent.length+' cambios · enviado por '+esc(por)+'</small>';
-  $('swBody').innerHTML=(mios.length?'<p><b>Te afectan:</b></p><ul class="chg">'+mios.map(e=>'<li><span class="rel">'+esc(e.rel+(e.ex?' ✨':'')+(e.ho?' 📞':''))+'</span> · '+esc(e.code)+' '+esc(fCorta(mk,e.d))+'</li>').join('')+'</ul>':'<p>✔ Ningún cambio te afecta este mes.</p>')+
-    (ent.length?'<details class="talm"><summary><b>Todos los cambios ('+ent.length+')</b><span></span></summary><ul class="chg">'+ent.map(e=>'<li><span class="rel">'+esc(e.rel+(e.ex?' ✨':'')+(e.ho?' 📞':''))+'</span> · '+esc(e.code)+' '+esc(fCorta(mk,e.d))+'</li>').join('')+'</ul></details>':'')+'<p class="hint">Tu calendario, "¿Quién me cubre?" y tus alarmas ya usan el horario real.</p>';}
-document.addEventListener('change',async e=>{if(e.target.id!=='tQr'&&e.target.id!=='tQr2')return;const f=e.target.files[0];e.target.value='';if(!f)return;toast('Leyendo el QR…');
+  const completo='SOD1|'+p[1]+'|'+p[2]+'|1/1|'+sello+'|'+por+'\n'+Array.from({length:n},(_,j)=>qrScan.partes[j+1]||'').join(';');
+  T.real=T.real||{};const prevEnt=T.real[mk]&&T.real[mk].sello!==sello?(T.real[mk].ent||[]):null,clave=e=>[e.d,e.code,e.orig.join('/'),e.act.join('/')].join('|');
+  let dif=T.real[mk]&&T.real[mk].sello===sello?T.real[mk].dif:null;
+  if(prevEnt){const kn=new Set(ent.map(clave)),kp=new Set(prevEnt.map(clave));dif={canc:prevEnt.filter(e=>!kn.has(clave(e))),nuevos:ent.filter(e=>!kp.has(clave(e))),ts:Date.now()};if(!dif.canc.length&&!dif.nuevos.length)dif=null;}
+  T.real[mk]={sello,por,ts:Date.now(),ent};if(dif)T.real[mk].dif=dif;qrScan=null;tMes=mk;saveT();
+  if(!desdeNube)void nubePublicarQR(completo);
+  const todos=(ent||[]).filter(e=>Number.isInteger(e.d)&&e.d>=1&&e.d<=dimOf(mk));const vigentes=qrPendientes(mk,ent);const pasados=todos.filter(e=>!vigentes.includes(e));
+  const esMio=e=>e.orig.includes(T.sg)||e.act.includes(T.sg);const mios=vigentes.filter(esMio),miosPas=pasados.filter(esMio);
+  const li=e=>'<li><span class="rel">'+esc(e.rel+(e.ex?' ✨':'')+(e.ho?' 📞':''))+'</span> · '+esc(e.code)+' '+esc(fCorta(mk,e.d))+'</li>';
+  $('bg').hidden=false;$('swSheet').hidden=false;$('swTabs').innerHTML='';$('swHead').innerHTML='📋 Horario real recibido<small>'+esc(MESL[mes]+' '+yr)+' · '+todos.length+' cambios ('+vigentes.length+' por venir) · enviado por '+esc(por)+'</small>';
+  const dhtml=difHTML(mk,dif);$('swBody').innerHTML=dhtml+(mios.length?'<p><b>Te afectan (por venir):</b></p><ul class="chg">'+mios.map(li).join('')+'</ul>':'<p>✔ No tienes cambios por venir.</p>')+
+    (miosPas.length?'<p><b>Tuyos ya pasados:</b> '+miosPas.length+'</p><ul class="chg">'+miosPas.map(li).join('')+'</ul>':'')+
+    (vigentes.length?'<details class="talm"><summary><b>Cambios por venir ('+vigentes.length+')</b><span></span></summary><ul class="chg">'+vigentes.map(li).join('')+'</ul></details>':'')+
+    (pasados.length?'<details class="talm"><summary><b>Cambios ya pasados ('+pasados.length+')</b><span></span></summary><ul class="chg">'+pasados.map(li).join('')+'</ul></details>':'')+
+    '<p class="hint">✅ QR aplicado: '+todos.length+' cambios guardados. Tu calendario, "¿Quién me cubre?" y tus alarmas ya usan el horario real.</p>';}
+document.addEventListener('change',async e=>{if(e.target.id!=='tQr')return;const f=e.target.files[0];e.target.value='';if(!f)return;toast('Leyendo el QR…');
   try{const t=await leerQR(f);if(!t){toast('No encontré un QR en la foto. Acércate más y que salga completo y nítido.');return}aplicarQR(t);}
   catch(err){toast(err&&err.message==='script'?'Necesito internet la primera vez para leer QR.':'No pude leer la foto.');}});
 window.__aplicarQR=aplicarQR;
+
+/* ===== 📨 Solicitudes de cobertura (nube) =====
+   La nube solo guarda la solicitud (quién, día, casilla, a quién, respuestas). El horario NO se sube:
+   cada celular calcula la disponibilidad con su propio PDF. Lo acordado NO es oficial hasta que llega en "cambios". */
+let SOL=new Map(),solTab='rec';const SOLV='sod-sol-visto';
+function solVisto(){try{return JSON.parse(localStorage.getItem(SOLV)||'{}')}catch(_){return {}}}
+function solMarcar(o){try{localStorage.setItem(SOLV,JSON.stringify(o))}catch(_){}}
+const solActivo=()=>!!(typeof nube!=='undefined'&&nube.auth&&nube.auth.currentUser&&(nube.rol==='admin'||nube.rol==='lector')&&nube.sg);
+const solMio=x=>x.deUid===(nube.auth&&nube.auth.currentUser&&nube.auth.currentUser.uid);
+const solParaMi=x=>!solMio(x)&&((x.para||[]).includes('*')||(x.para||[]).includes(nube.sg));
+const solVig=x=>(x.venceMs||0)>Date.now();
+function solOficial(x){const R=T.real&&T.real[x.mk];if(!R||!x.elegido)return null;return (R.ent||[]).some(e=>e.d===x.d&&String(e.code).toUpperCase()===String(x.casilla).toUpperCase()&&e.act.includes(x.elegido)&&e.orig.includes(x.de));}
+function solEstado(x){if(x.estado==='cancelada')return ['no','CANCELADA'];if(x.estado==='acordada'){const o=solOficial(x);return o?['of','✔ OFICIAL']:solVig(x)?['ac','ACORDADO · NO OFICIAL']:['no','❌ NO QUEDÓ OFICIAL'];}
+  if(!solVig(x))return ['ve','VENCIDA'];const n=Object.values(x.resp||{}).filter(v=>v==='acepta').length;return n&&solMio(x)?['ac',n+(n>1?' ACEPTARON':' ACEPTÓ')]:['ab','ABIERTA'];}
+function solPend(){if(!solActivo())return 0;let n=0;for(const x of SOL.values()){if(!solVig(x)||x.estado!=='abierta')continue;
+  if(solParaMi(x)&&!(x.resp||{})[nube.sg])n++;else if(solMio(x)&&Object.values(x.resp||{}).includes('acepta'))n++;}return n;}
+function solAvisar(t,b){toast(t+(b?' · '+b:''));try{if(LN&&CAP&&CAP.isNativePlatform&&CAP.isNativePlatform())LN.schedule({notifications:[{id:hid('sol'+t+b+Date.now()),channelId:'alarmas2',autoCancel:true,ongoing:false,title:t,body:b||'',schedule:{at:new Date(Date.now()+500)}}]}).catch(()=>{});}catch(_){}}
+function solTxt(x){return fCorta(x.mk,x.d)+' · '+x.casilla;}
+function solIniciar(){solParar();if(!nube.db)return;
+  nube.unsubSol=nube.db.collection('solicitudes').where('venceMs','>',Date.now()-45*86400000).onSnapshot(qs=>{
+    const v=solVisto(),primera=!solIniciar.cargado;solIniciar.cargado=true;
+    qs.docChanges().forEach(ch=>{const x=Object.assign({id:ch.doc.id},ch.doc.data());if(ch.type==='removed'){SOL.delete(x.id);return}SOL.set(x.id,x);
+      const firma=x.estado+'|'+JSON.stringify(x.resp||{})+'|'+x.elegido;if(v[x.id]===firma)return;const antes=v[x.id];v[x.id]=firma;if(primera&&antes===undefined&&!solVig(x))return;
+      if(x.estado==='abierta'&&solVig(x)&&solParaMi(x)&&antes===undefined)solAvisar('📨 '+x.de+' te pide cubrir',solTxt(x));
+      else if(solMio(x)&&x.estado==='abierta'){const ac=Object.entries(x.resp||{}).filter(([k,r])=>r==='acepta'&&!(antes||'').includes('"'+k+'":"acepta"'));ac.forEach(([k])=>solAvisar('🔔 '+k+' aceptó tu solicitud',solTxt(x)));}
+      else if(x.estado==='acordada'&&x.elegido===nube.sg&&!solMio(x)&&!(antes||'').startsWith('acordada'))solAvisar('✔ '+x.de+' te eligió',solTxt(x)+' · falta que el supervisor lo registre');
+      else if(x.estado==='cancelada'&&solParaMi(x)&&antes&&!antes.startsWith('cancelada'))solAvisar('✖ '+x.de+' canceló su solicitud',solTxt(x));});
+    solMarcar(v);if(typeof renderT==='function')try{renderT()}catch(_){}if(!$('swSheet').hidden&&$('swHead').textContent.startsWith('📨 Solicitudes'))solPintar();
+  },err=>{nubeEstado('⚠️ Solicitudes: '+(err.code||err.message));});}
+solIniciar.cargado=false;
+function solParar(){if(typeof nube!=='undefined'&&nube.unsubSol){nube.unsubSol();nube.unsubSol=null;}SOL=new Map();solIniciar.cargado=false;}
+function solTarjeta(x){const [c,t]=solEstado(x),r=x.resp||{},abierta=x.estado==='abierta'&&solVig(x);let h='<div class="sol'+(c==='ve'||c==='no'?' gris':'')+'">';
+  if(solMio(x)){h+='<b>'+esc(solTxt(x))+'</b><span class="sst '+c+'">'+t+'</span><br><small>Para: '+((x.para||[]).includes('*')?'todos los que pueden':esc((x.para||[]).join(', ')))+'</small>';
+    const L=Object.entries(r);if(L.length)h+=L.map(([k,v])=>'<div class="row2"><span>'+(v==='acepta'?'✔ <b>'+esc(k)+'</b> acepta':'✖ <b>'+esc(k)+'</b> no puede')+'</span>'+(abierta&&v==='acepta'?'<button type="button" class="btn small" data-sole="'+x.id+'|'+esc(k)+'">Elegir</button>':'')+'</div>').join('');
+    else if(abierta)h+='<div class="hint">Esperando respuestas…</div>';
+    if(x.estado==='acordada')h+='<div class="hint">'+(solOficial(x)?'Ya llegó en la publicación oficial. Tu calendario y alarmas lo usan.':'Acordado con <b>'+esc(x.elegido)+'</b>. Falta que el supervisor lo registre en la Checklist.')+'</div>';
+    if(abierta)h+='<button type="button" class="btn small ghost" data-solc="'+x.id+'">Cancelar solicitud</button>';}
+  else{const yo=r[nube.sg];h+='<b>'+esc(x.de)+'</b> pide cubrir <span class="sst '+c+'">'+t+'</span><br>'+esc(solTxt(x))+' · '+esc(etiqueta(x.casilla))+'<br><small>Tu turno ese día: '+esc(descDia(nube.sg,x.mk,x.d))+'</small>';
+    if(x.estado==='acordada')h+='<div class="hint">'+(x.elegido===nube.sg?'✔ Te eligió a ti.':'Lo cubre '+esc(x.elegido)+'.')+'</div>';
+    else if(abierta)h+=yo?'<div class="hint">Respondiste: '+(yo==='acepta'?'✔ acepto':'✖ no puedo')+'</div>':'<div><button type="button" class="btn small" data-solr="'+x.id+'|acepta">✔ Acepto</button> <button type="button" class="btn small ghost" data-solr="'+x.id+'|rechaza">✖ No puedo</button></div>';}
+  return h+'</div>';}
+function solPintar(){const S=$('swSheet');$('bg').hidden=false;S.hidden=false;
+  const L=[...SOL.values()].sort((a,b)=>(a.mk*40+a.d)-(b.mk*40+b.d));const rec=L.filter(x=>solParaMi(x)&&x.estado==='abierta'&&solVig(x)),env=L.filter(x=>solMio(x)&&(x.estado==='abierta'&&solVig(x)||x.estado==='acordada'&&solVig(x))),
+    his=L.filter(x=>!rec.includes(x)&&!env.includes(x)&&(solMio(x)||solParaMi(x))).reverse();
+  const nr=rec.filter(x=>!(x.resp||{})[nube.sg]).length;
+  $('swHead').innerHTML='📨 Solicitudes<small>Como <b>'+esc(nube.sg)+'</b> · lo acordado no es oficial hasta que lo registre el supervisor</small>';
+  $('swTabs').innerHTML=[['rec','Recibidas'+(nr?' ('+nr+')':'')],['env','Enviadas'],['his','Historial']].map(([k,l])=>'<button type="button" data-solt="'+k+'" aria-pressed="'+(solTab===k)+'">'+l+'</button>').join('');
+  const A=solTab==='rec'?rec:solTab==='env'?env:his;
+  $('swBody').innerHTML=(T.sg&&T.sg!==nube.sg?'<p class="hint">⚠️ En la nube eres <b>'+esc(nube.sg)+'</b> y en este celular usas <b>'+esc(T.sg)+'</b>.</p>':'')+
+    (A.length?A.map(solTarjeta).join(''):'<p class="hint">'+(solTab==='rec'?'No tienes solicitudes por responder.':solTab==='env'?'No tienes solicitudes abiertas. Para pedir: toca un turno tuyo → ¿Quién me cubre? → 📨.':'Sin historial.')+'</p>');}
+async function solCrear(para){const {mk,day,code}=swCtx;if(!solActivo()){toast('Entra a la nube para pedir cobertura.');return}
+  if(T.sg!==nube.sg){toast('Tus siglas en la nube ('+nube.sg+') no coinciden con las de este celular ('+T.sg+').');return}
+  if([...SOL.values()].some(x=>solMio(x)&&x.estado==='abierta'&&solVig(x)&&x.mk===mk&&x.d===day&&x.casilla===code)){toast('Ya tienes una solicitud abierta para ese turno: revísala en 📨 Solicitudes.');return}
+  const f=fechaDe(mk,day);const vence=new Date(f.getFullYear(),f.getMonth(),f.getDate()+1,12).getTime();
+  try{await nube.db.collection('solicitudes').add({de:nube.sg,deUid:nube.auth.currentUser.uid,mk,d:day,casilla:code,para,estado:'abierta',resp:{},elegido:'',creadaEn:firebase.firestore.FieldValue.serverTimestamp(),venceMs:vence});
+    toast('📨 Solicitud enviada a '+(para.includes('*')?'todos los que pueden':para.join(', ')));solTab='env';solPintar();}
+  catch(e){toast('No se pudo enviar: '+(e.code||e.message));}}
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-solp],[data-solall],[data-solt],[data-solr],[data-sole],[data-solc]')||(e.target.id==='tSol'||e.target.closest('#tSol')?$('tSol'):null);if(!t)return;
+  if(t.id==='tSol'){solTab=[...SOL.values()].some(x=>solParaMi(x)&&x.estado==='abierta'&&solVig(x)&&!(x.resp||{})[nube.sg])?'rec':'env';solPintar();return}
+  if(t.dataset.solt){solTab=t.dataset.solt;solPintar();return}
+  if(t.dataset.solp){const r=swRes[+t.dataset.solp];if(r)await solCrear([r.sg]);return}
+  if(t.dataset.solall){const ok=swRes.filter(r=>r.e==='ok').map(r=>r.sg);if(ok.length)await solCrear(ok);return}
+  try{if(t.dataset.solr){const [id,v]=t.dataset.solr.split('|');await nube.db.collection('solicitudes').doc(id).update({['resp.'+nube.sg]:v});toast(v==='acepta'?'✔ Respondiste que sí':'Respondiste que no');}
+    if(t.dataset.sole){const [id,sg]=t.dataset.sole.split('|');if(!confirm('¿Elegir a '+sg+'?\n\nQueda ACORDADO entre ustedes, pero NO es oficial hasta que el supervisor lo registre en la Checklist.'))return;await nube.db.collection('solicitudes').doc(id).update({estado:'acordada',elegido:sg});toast('✔ Acordado con '+sg+'. Avísale al supervisor para que lo registre.');}
+    if(t.dataset.solc){if(!confirm('¿Cancelar tu solicitud?'))return;await nube.db.collection('solicitudes').doc(t.dataset.solc).update({estado:'cancelada',elegido:''});toast('Solicitud cancelada');}}
+  catch(err){toast('No se pudo: '+(err.code||err.message));}});
+/* --- cancelaciones: qué cambió respecto al QR anterior --- */
+function hoyTengo(mk,d){const c=(I().by.get(mk+'|'+d+'|'+T.sg)||[]).filter(x=>x&&x!=='I');return c.length?c.join(' + '):'libre'}
+function difHTML(mk,dif,soloMios){if(!dif)return '';const mio=e=>e.orig.includes(T.sg)||e.act.includes(T.sg);
+  const C=soloMios?dif.canc.filter(mio):dif.canc,N=soloMios?dif.nuevos.filter(mio):dif.nuevos;if(!C.length&&!N.length)return '';
+  const li=(e,cn)=>'<li>'+esc(fCorta(mk,e.d))+' · <b>'+esc(e.code)+'</b> · '+esc(e.rel)+(cn&&mio(e)?' → <b>ese día ahora: '+esc(hoyTengo(mk,e.d))+'</b>':'')+'</li>';
+  const misC=dif.canc.filter(mio);
+  return '<div class="box" style="border-left:4px solid var(--warn);margin:4px 0 10px">'+
+    (misC.length&&!soloMios?'<p><b>⚠️ Se cancel'+(misC.length>1?'aron cambios tuyos':'ó un cambio tuyo')+':</b></p><ul class="chg">'+misC.map(e=>li(e,true)).join('')+'</ul>':'')+
+    (C.length?'<details class="talm"'+(soloMios?' open':'')+'><summary><b>❌ Cancelados ('+C.length+')</b><span></span></summary><ul class="chg">'+C.map(e=>li(e,true)).join('')+'</ul></details>':'')+
+    (N.length?'<details class="talm"'+(soloMios?' open':'')+'><summary><b>🆕 Nuevos ('+N.length+')</b><span></span></summary><ul class="chg">'+N.map(e=>li(e,false)).join('')+'</ul></details>':'')+
+    '<p class="hint">Respecto a la actualización anterior. Lo cancelado vuelve a como venía en el PDF.</p></div>';}
+/* --- ⇄ Ver cambios: lista de cambios de turno recibidos de la Checklist (QR o nube) --- */
+let vc={mk:0,tab:'mios',q:''};
+const esAdminNube=()=>!!(typeof nube!=='undefined'&&nube.rol==='admin'&&nube.auth&&nube.auth.currentUser);
+function vcItem(mk,e,conDia){const R=T.real&&T.real[mk],ix=R?R.ent.indexOf(e):-1;
+  return '<li>'+(conDia?esc(fCorta(mk,e.d))+' · ':'')+'<b>'+esc(e.code)+'</b> · '+esc(e.rel+(e.ex?' ✨':'')+(e.ho?' 📞':''))+
+    (esAdminNube()&&ix>=0?' <button type="button" class="link" data-vcx="'+ix+'" style="font-size:13px;padding:0 6px" aria-label="Cancelar este cambio para todos">✖ Cancelar</button>':'')+'</li>';}
+/* admin: cancelar un cambio para TODOS. Se arma el mes completo sin ese cambio y se publica igual que un QR. */
+function vcCancelar(ix){const mk=vc.mk,R=T.real&&T.real[mk],e=R&&R.ent[ix];if(!e)return;
+  /* un cambio de turno suele ser dos casillas (A X B y B X A): se cancelan juntas */
+  const cruza=(x,y)=>x.orig.some(s=>y.act.includes(s))||x.act.some(s=>y.orig.includes(s));
+  const quitar=new Set([ix]);let crece=true;while(crece){crece=false;R.ent.forEach((x,i)=>{if(!quitar.has(i)&&x.d===e.d&&[...quitar].some(j=>cruza(R.ent[j],x)||cruza(x,R.ent[j]))){quitar.add(i);crece=true}})}
+  const lista=[...quitar].map(i=>R.ent[i]).map(x=>'• '+fCorta(mk,x.d)+' · '+x.code+' · '+x.rel).join('\n');
+  if(!esAdminNube()){toast('Solo el administrador conectado a la nube puede cancelar cambios.');return}
+  if(!confirm('¿Cancelar '+(quitar.size>1?'estos '+quitar.size+' cambios (van juntos)':'este cambio')+' PARA TODOS?\n\n'+lista+'\n\nSe publica en la nube y a todos les vuelve el turno del PDF.\n\nIMPORTANTE: deshazlo también en la Checklist; si no, volverá a aparecer con el próximo QR o publicación de la Checklist.'))return;
+  const linea=x=>[x.d,x.code,x.orig.join('/'),x.act.join('/'),String(x.rel||'').replace(/[,;\n|]/g,' '),(x.ex?'e':'')+(x.ho?'h':'')].join(',');
+  const yr=Math.floor(mk/12),sello=Math.max(Date.now(),(parseInt(R.sello,36)||0)+1).toString(36),por=(T.sg||'ADM')+'·app';
+  const codigo='SOD1|'+yr+'|'+MESL[mk%12].toUpperCase()+'|1/1|'+sello+'|'+por+'\n'+R.ent.filter((x,i)=>!quitar.has(i)).map(linea).join(';');
+  qrScan=null;aplicarQR(codigo);}
+function vcTodos(mk,ent){const q=vc.q.trim().toUpperCase(),hoy=today();
+  const L=ent.filter(e=>!q||e.orig.concat(e.act).some(x=>x.startsWith(q))).sort((x,y)=>x.d-y.d||String(x.code).localeCompare(y.code));
+  if(!L.length)return '<p class="hint">'+(q?'Nadie con "'+esc(q)+'" en los cambios de este mes.':'Sin cambios.')+'</p>';
+  const dias=[...new Set(L.map(e=>e.d))],bloque=d=>'<p style="margin:10px 0 2px"><b>'+esc(fCorta(mk,d))+(fechaDe(mk,d).getTime()===hoy.getTime()?' · hoy':'')+'</b></p><ul class="chg">'+L.filter(e=>e.d===d).map(e=>vcItem(mk,e,false)).join('')+'</ul>';
+  const fut=dias.filter(d=>fechaDe(mk,d)>=hoy),pas=dias.filter(d=>fechaDe(mk,d)<hoy);
+  return (fut.length?fut.map(bloque).join(''):'<p class="hint">No hay cambios por venir'+(q?' para "'+esc(q)+'"':'')+'.</p>')+
+    (pas.length?'<details class="talm"'+(q?' open':'')+'><summary><b>Días ya pasados ('+pas.length+')</b><span></span></summary>'+pas.map(bloque).join('')+'</details>':'');}
+function verCambios(){const mk=vc.mk,R=T.real&&T.real[mk],mes=mk%12,yr=Math.floor(mk/12);
+  $('bg').hidden=false;$('swSheet').hidden=false;
+  if(!R||!(R.ent||[]).length){$('swHead').innerHTML='⇄ Cambios de '+esc(MESL[mes]+' '+yr);$('swTabs').innerHTML='';
+    $('swBody').innerHTML='<p>Todavía no hay cambios de este mes.</p><p class="hint">Escanea el QR de la Checklist (📷 Escanear QR)'+(nube&&nube.auth&&nube.auth.currentUser?' o espera a que el supervisor los publique en la nube':'')+'.</p>';return;}
+  const ent=R.ent.filter(e=>Number.isInteger(e.d)&&e.d>=1&&e.d<=dimOf(mk)),f=new Date(R.ts),hoy=today();
+  $('swHead').innerHTML='⇄ Cambios de '+esc(MESL[mes]+' '+yr)+'<small>'+(R.nube?'☁️ nube':'📋 Checklist')+' · por '+esc(R.por)+' · '+ent.length+' cambios · '+esc(DIA[f.getDay()]+' '+f.getDate()+' '+MES[f.getMonth()]+' '+pad(f.getHours())+':'+pad(f.getMinutes()))+'</small>';
+  $('swTabs').innerHTML=[['mios','Míos'],['todos','Todos']].map(([k,l])=>'<button type="button" data-vct="'+k+'" aria-pressed="'+(vc.tab===k)+'">'+l+'</button>').join('');
+  if(vc.tab==='mios'){const m=ent.filter(e=>e.orig.includes(T.sg)||e.act.includes(T.sg)).sort((x,y)=>x.d-y.d),fut=m.filter(e=>fechaDe(mk,e.d)>=hoy),pas=m.filter(e=>fechaDe(mk,e.d)<hoy);
+    $('swBody').innerHTML=(R.dif?difHTML(mk,R.dif,true):'')+'<p><b>Por venir</b></p>'+(fut.length?'<ul class="chg">'+fut.map(e=>vcItem(mk,e,true)).join('')+'</ul>':'<p class="hint">No tienes cambios por venir.</p>')+
+      '<p><b>Ya pasados</b></p>'+(pas.length?'<ul class="chg">'+pas.map(e=>vcItem(mk,e,true)).join('')+'</ul>':'<p class="hint">Ninguno.</p>')+
+      '<p class="hint">"RO X CD" = RO entra y CD sale. ✨ extra · 📞 horas.</p>';}
+  else{$('swBody').innerHTML=(R.dif?difHTML(mk,R.dif,false):'')+'<input id="vcBuscar" type="search" autocomplete="off" placeholder="Buscar siglas…" value="'+esc(vc.q)+'" style="width:100%;margin:4px 0 6px;text-transform:uppercase"><div id="vcLista">'+vcTodos(mk,ent)+'</div>';}}
+document.addEventListener('click',e=>{const cx=e.target.closest('[data-vcx]');if(cx){vcCancelar(+cx.dataset.vcx);return}if(e.target.id==='tCmb'){vc={mk:tMes||mkHoy(),tab:'mios',q:''};verCambios();return}
+  const t=e.target.closest('[data-vct]');if(t){vc.tab=t.dataset.vct;verCambios();}});
+document.addEventListener('input',e=>{if(e.target.id!=='vcBuscar')return;vc.q=e.target.value;const R=T.real&&T.real[vc.mk];if(R)$('vcLista').innerHTML=vcTodos(vc.mk,R.ent.filter(x=>Number.isInteger(x.d)&&x.d>=1&&x.d<=dimOf(vc.mk)));});
+
 
 /* --- alarmas en orden cronológico + cuánto antes del turno --- */
 const ANT={A:[[1,'1 h'],[1.5,'1 h 30'],[2,'2 h'],[2.5,'2 h 30']],B:[[1,'1 h'],[2,'2 h'],[3,'3 h']],C:[[1,'1 h'],[2,'2 h'],[3,'3 h'],[4,'4 h']]};
@@ -1057,11 +1276,10 @@ const NOV=['🗓️ El calendario es la vista principal. Toca un día para ver t
   '📷 Escanear QR: lee el horario real que genera la Checklist (botón 📤 QR PARA ShiftOnDuty).',
   '⇄ Los cambios se muestran igual que en la Checklist: RO X CD = RO entra, CD sale; ✨ extra; 📞 HO.',
   '✈️ Mis vencimientos (en Eventos): licencia, médico, inglés OACI, habilitación y curso recurrente, con avisos 90, 60, 30 y 7 días antes.',
+  '☁️ Nube (prueba): entra en ⚙️ Ajustes con tu correo y los cambios del supervisor te llegan solos.',
   '💾 Respaldo completo en ⚙️ Ajustes: guarda también turnos, cambios y deudas.',
   '📷 Vencimientos: tómale foto a tu documento y la app lee el tipo y las fechas (Android, sin internet). Siempre revisa antes de guardar.',
   '📋 iPhone: lee tus documentos con Texto en vivo (Copiar todo → Pegar) y la app llena el tipo y las fechas.',
-  '📋 Cambios por Teams: el supervisor pega los cambios en el chat; tú copias el mensaje y abres la app (en Android se aplica solo; en iPhone toca “📋 Pegar cambios”).',
-  '🖼️ Cambios por WhatsApp: el supervisor manda la imagen del QR y tú la abres con “QR de WhatsApp / galería” en Turnos.',
   '📅 iPhone: botón “Pasar al Calendario” en Turnos. Tus turnos, eventos y vencimientos quedan en el Calendario con sus avisos, aunque la app esté cerrada.',
   '🚗 Licencia de conducir y 📌 Otro documento (pasaporte, visa, DNI…) con aviso desde 6 meses antes si lo eliges.'];
 function novedades(){let v='';try{v=localStorage.getItem('sod-nov')||''}catch(_){}if(v===APPV)return;try{localStorage.setItem('sod-nov',APPV)}catch(_){}
@@ -1070,6 +1288,20 @@ function novedades(){let v='';try{v=localStorage.getItem('sod-nov')||''}catch(_)
 
 tick();setView(view);render();renderT();setTimeout(novedades,600);try{$('appV').textContent='· Versión '+APPV;$('appV2').textContent='v'+APPV;document.title='ShiftOnDuty v'+APPV;}catch(_){}
 })();
+</script>
+<div id="avisoOf" role="dialog" aria-modal="true" aria-labelledby="avisoOfT" style="position:fixed;inset:0;z-index:9999;background:rgba(2,8,18,.82);display:flex;align-items:center;justify-content:center;padding:20px">
+ <div style="background:var(--card,#18201B);color:var(--ink,#E5ECE7);border:1px solid var(--line,#2A352E);border-radius:16px;max-width:420px;width:100%;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.5);text-shadow:none">
+  <div style="font-size:34px;line-height:1">🛡️</div>
+  <h2 id="avisoOfT" style="margin:8px 0 6px;font-size:21px;text-transform:none;letter-spacing:normal;color:inherit;font-weight:800">Verifica tu horario oficial</h2>
+  <p style="margin:0 0 14px">ShiftOnDuty es una herramienta de apoyo. Antes de utilizarla, confirma tus turnos y cambios con el horario oficial de CENAMER.</p>
+  <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin-bottom:14px"><input type="checkbox" id="avisoOfChk" style="width:22px;height:22px;flex:none;margin-top:1px"> <span>He leído el aviso y entiendo que debo verificar mi horario oficial.</span></label>
+  <button type="button" class="btn" id="avisoOfOk" disabled style="width:100%;opacity:.5">Entendido, continuar</button>
+ </div></div>
+<script>
+/* Confirmación obligatoria al abrir la app (cada vez que se abre en frío). Queda registro local de la última confirmación. */
+(function(){var c=document.getElementById('avisoOfChk'),b=document.getElementById('avisoOfOk'),d=document.getElementById('avisoOf');
+ c.addEventListener('change',function(){b.disabled=!c.checked;b.style.opacity=c.checked?1:.5});
+ b.addEventListener('click',function(){if(!c.checked)return;try{localStorage.setItem('sod-aviso-oficial',JSON.stringify({ts:Date.now(),v:(typeof APPV!=='undefined'?APPV:'')}))}catch(_){}d.remove();});})();
 </script>
 <script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>
 </body>
