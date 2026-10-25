@@ -243,7 +243,7 @@ input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;min-wid
 const $=id=>document.getElementById(id);
 function ask(m){return new Promise(res=>{const bg=document.getElementById('askBg');document.getElementById('askMsg').textContent=m;bg.hidden=false;
   const fin=v=>{bg.hidden=true;si.onclick=no.onclick=null;res(v)};const si=document.getElementById('askSi'),no=document.getElementById('askNo');si.onclick=()=>fin(true);no.onclick=()=>fin(false);si.focus();});}
-const APPV='1.8-firebase49',AUTOR='charlied@ys';const KEY='pendientes-v1';
+const APPV='1.8-firebase50',AUTOR='charlied@ys';const KEY='pendientes-v1';
 const DIA=['dom','lun','mar','mié','jue','vie','sáb'],MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const CATS=[['casa','🏠 Casa'],['carro','🚗 Carro'],['personal','👤 Personal'],['trabajo','💼 Trabajo'],['pagos','💵 Pagos']];
 let S={tareas:[],super:[],freq:{},venc:[],vNoms:[],cfg:{hora:'08:00'}};
@@ -1289,6 +1289,16 @@ function novedades(){let v='';try{v=localStorage.getItem('sod-nov')||''}catch(_)
 tick();setView(view);render();renderT();setTimeout(novedades,600);try{$('appV').textContent='· Versión '+APPV;$('appV2').textContent='v'+APPV;document.title='ShiftOnDuty v'+APPV;}catch(_){}
 })();
 </script>
+<div id="felizCtr" hidden role="dialog" aria-modal="true" aria-labelledby="felizT" style="position:fixed;inset:0;z-index:9998;background:rgba(2,8,18,.55);display:flex;align-items:center;justify-content:center;padding:20px">
+ <div style="background:rgba(14,22,30,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);border-radius:20px;max-width:420px;width:100%;padding:24px 22px;text-align:center;color:#fff;box-shadow:0 12px 40px rgba(0,0,0,.5);text-shadow:none">
+  <div style="font-size:42px;line-height:1">🛫</div>
+  <div style="letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#F5B66B;margin-top:8px;font-weight:700">20 de octubre</div>
+  <h2 id="felizT" style="font-size:24px;line-height:1.2;margin:6px 0 14px;text-transform:none;letter-spacing:normal;color:#fff;font-weight:800">¡Feliz Día del Controlador de Tránsito Aéreo!</h2>
+  <p style="margin:0 0 12px;color:#E6ECF2">Detrás de cada vuelo seguro hay decisiones que pocos ven, voces que transmiten confianza y profesionales que hacen del cielo un lugar más seguro.</p>
+  <p style="margin:0 0 12px;font-style:italic;font-weight:600">Porque nuestra mayor satisfacción es que millones lleguen a su destino, sin saber siquiera que estuvimos allí.</p>
+  <div style="margin-top:14px;font-size:14px;color:#cfd8e3">Con admiración y respeto a mis compañeros de CENAMER.<br><b style="color:#7DB4F2">ShiftOnDuty</b></div>
+  <button type="button" class="btn" id="felizOk" style="margin-top:18px;width:100%">Gracias ✈️</button>
+ </div></div>
 <div id="avisoOf" role="dialog" aria-modal="true" aria-labelledby="avisoOfT" style="position:fixed;inset:0;z-index:9999;background:rgba(2,8,18,.82);display:flex;align-items:center;justify-content:center;padding:20px">
  <div style="background:var(--card,#18201B);color:var(--ink,#E5ECE7);border:1px solid var(--line,#2A352E);border-radius:16px;max-width:420px;width:100%;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.5);text-shadow:none">
   <div style="font-size:34px;line-height:1">🛡️</div>
@@ -1301,7 +1311,11 @@ tick();setView(view);render();renderT();setTimeout(novedades,600);try{$('appV').
 /* Confirmación obligatoria al abrir la app (cada vez que se abre en frío). Queda registro local de la última confirmación. */
 (function(){var c=document.getElementById('avisoOfChk'),b=document.getElementById('avisoOfOk'),d=document.getElementById('avisoOf');
  c.addEventListener('change',function(){b.disabled=!c.checked;b.style.opacity=c.checked?1:.5});
- b.addEventListener('click',function(){if(!c.checked)return;try{localStorage.setItem('sod-aviso-oficial',JSON.stringify({ts:Date.now(),v:(typeof APPV!=='undefined'?APPV:'')}))}catch(_){}d.remove();});})();
+ b.addEventListener('click',function(){if(!c.checked)return;try{localStorage.setItem('sod-aviso-oficial',JSON.stringify({ts:Date.now(),v:(typeof APPV!=='undefined'?APPV:'')}))}catch(_){}d.remove();feliz();});
+ /* Saludo del Día del Controlador (20-oct): una sola vez por celular, hasta fin de noviembre 2026 */
+ function feliz(){var f=document.getElementById('felizCtr');if(!f)return;var visto=false;try{visto=localStorage.getItem('sod-feliz-2026')==='1'}catch(_){}
+  if(visto||Date.now()>new Date(2026,11,1).getTime()){f.remove();return}f.hidden=false;
+  document.getElementById('felizOk').addEventListener('click',function(){try{localStorage.setItem('sod-feliz-2026','1')}catch(_){}f.remove();});}})();
 </script>
 <script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>
 </body>
