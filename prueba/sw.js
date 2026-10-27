@@ -1,5 +1,5 @@
 /* ShiftOnDuty · funciona sin internet. Al publicar una versión nueva cambia V y el teléfono la toma al abrir la app. */
-const V='sod-1.8-firebase50';
+const V='sod-1.0.1';
 const BASE=['./','index.html','manifest.json','icons/icon-180.png','icons/icon-192.png','icons/icon-512.png','vendor/jsQR.js','pdfjs/pdf.min.js','pdfjs/pdf.worker.min.js','airport-photo.jpg','vendor/firebase/firebase-app-compat.js','vendor/firebase/firebase-auth-compat.js','vendor/firebase/firebase-firestore-compat.js'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(BASE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
