@@ -108,6 +108,7 @@ input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;min-wid
 .tcards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tcard{text-align:left;border:1px solid var(--line);border-left:6px solid var(--line);border-radius:12px;padding:12px;background:var(--surface);cursor:pointer;display:flex;flex-direction:column;gap:4px;min-height:84px}
 .tcard span{font-size:13px;color:var(--muted);font-weight:600}.tcard b{font-size:15px}
+.tver,.tent{--tc:#3F9E2A;--tx:#3F9E2A}.tex{--tc:#C026D3;--tx:#C026D3}.tex.trow,.tex.tcard{background:color-mix(in srgb,#C026D3 12%,var(--surface))}.tver.trow,.tver.tcard,.tent.trow,.tent.tcard{background:color-mix(in srgb,#3F9E2A 12%,var(--surface))}.tfalta.ent{border-color:#2E9E44}
 .tw{--tc:var(--line);--tx:var(--ink)}.tn{--tc:#E07B12;--tx:#E07B12}.tz{--tc:#2E7DBF;--tx:#2E7DBF}.tg0{--tc:var(--line);--tx:var(--muted)}.none{--tc:var(--line);--tx:var(--muted)}
 .tn.trow,.tn.tcard{background:color-mix(in srgb,#E07B12 12%,var(--surface))}.tz.trow,.tz.tcard{background:color-mix(in srgb,#2E7DBF 12%,var(--surface))}.tg0.trow{background:var(--soft)}
 .tcard,.trow{border-left-color:var(--tc)}
@@ -224,7 +225,7 @@ input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;min-wid
     <div class="box"><b>Eventos sin hora: avisarme a las</b><input type="time" id="cHora" style="padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--surface)"></div>
     <div class="box" id="nBox" hidden><b>Alarmas en el teléfono</b><button class="btn ghost" id="nSetup" type="button" style="margin:4px 0 8px">Revisar permisos de alarmas</button><div class="hint" id="nState"></div>
       <div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn ghost" id="nAsk" type="button">Permitir avisos</button><button class="btn ghost" id="nExact" type="button" hidden>Avisos a la hora exacta</button><button class="btn ghost" id="nTest" type="button">Probar (10 s)</button></div><label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input type="checkbox" id="nReloj"> <span><b>⌚ Enviar alarmas a mi reloj inteligente</b><br><small class="hint">Garmin, Samsung, Xiaomi/Amazfit, Huawei y otros. Los avisos dejan de quedar fijos en el celular para que el reloj los reciba. En la app de tu reloj permite las notificaciones de ShiftOnDuty.</small></span></label></div>
-    <div class="box" id="nubeBox"><b>☁️ Nube (prueba)</b><div class="hint" id="nubeEst">Sin conectar. Al entrar, los cambios que publique el supervisor desde la Checklist llegan solos.</div><div id="nubeForm"><input id="nubeMail" type="email" autocomplete="username" placeholder="Correo (ej. iris@prueba.com)" style="width:100%;font-size:16px;padding:10px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><input id="nubePass" type="password" autocomplete="current-password" placeholder="Contraseña" style="width:100%;font-size:16px;padding:10px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><button type="button" class="btn" id="nubeEntrar" style="width:100%;margin-top:4px">☁️ Entrar</button><input id="nubeSiglas" maxlength="4" placeholder="Siglas (solo registro)" style="width:100%;font-size:16px;padding:10px;margin:8px 0 4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;text-transform:uppercase"><button type="button" class="btn ghost" id="nubeRegistrar">Solicitar acceso por primera vez</button><button type="button" class="btn ghost" id="nubeRecuperar">Olvidé mi contraseña</button></div><div id="nubeAdminPanel" hidden><b>👥 Usuarios</b> <span id="usrBadge" class="solb" hidden></span><div class="hint">Solo el administrador ve este panel. Cada acción pide confirmar tu identidad.</div><div class="chips" id="usrTabs" style="margin-top:8px"></div><input id="usrQ" type="search" placeholder="Buscar siglas o correo" style="width:100%;font-size:16px;padding:9px;margin:8px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><div id="usrLista" class="hint">Cargando…</div><button type="button" class="btn ghost small" id="usrMigrar" style="margin-top:8px">Registrar siglas de usuarios activos</button><div id="updAdm" style="margin-top:14px;border-top:1px solid var(--line);padding-top:10px"><b>⬆️ Actualizaciones</b><div class="hint" id="updAdmEst">—</div><div class="hint" style="margin-top:6px">Pega los datos del resumen de «Compilar APK ShiftOnDuty» (el SHA-256 de la compilación oficial, NO el de la página de GitHub). Sube antes el APK a GitHub Releases (charliedays2020/shiftonduty-apk, etiqueta v&lt;versionCode&gt;, archivo &lt;versionCode&gt;-&lt;16 primeros del SHA&gt;.apk, único archivo). Primero se publica en <b>prueba</b> (solo tú la ves); después de probarla, para el personal.</div><input id="updVc" inputmode="numeric" placeholder="versionCode (ej. 45)" style="width:100%;font-size:16px;padding:9px;margin-top:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><input id="updVn" placeholder="Versión (ej. 1.0.2)" maxlength="20" style="width:100%;font-size:16px;padding:9px;margin-top:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><input id="updSha" placeholder="SHA-256 (64 caracteres)" maxlength="64" autocapitalize="off" spellcheck="false" style="width:100%;font-size:14px;padding:9px;margin-top:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font-family:monospace"><textarea id="updNotas" rows="2" maxlength="500" placeholder="Novedades para el personal (opcional)" style="width:100%;font-size:15px;padding:9px;margin-top:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"></textarea><div class="acts" style="justify-content:flex-start;margin-top:8px;flex-wrap:wrap;gap:8px"><button type="button" class="btn small" id="updPubPrueba">Verificar y publicar en prueba</button><button type="button" class="btn small ghost" id="updPubGeneral">Publicar para el personal</button></div><div class="acts" style="justify-content:flex-start;margin-top:12px;flex-wrap:wrap;gap:8px"><button type="button" class="btn small danger" id="updStopPrueba">Detener prueba</button><button type="button" class="btn small danger" id="updStopGeneral">Detener personal</button></div></div></div><button type="button" class="btn ghost" id="nubeSalir" hidden>Salir de la nube</button></div><div class="box" id="updBox" hidden><b>⬆️ Actualización disponible</b><div class="hint" id="updTxt"></div><button class="btn" id="updAbrir2" type="button" style="margin-top:8px">Actualizar ShiftOnDuty</button></div><div class="box"><b>Respaldo completo</b><div class="hint">Guarda tus siglas, horarios, cambios, deudas, horario real, vencimientos, eventos y alarmas. Úsalo antes de cambiar de celular.</div><div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn ghost" id="bExp" type="button">Descargar respaldo</button><label class="btn ghost" for="bImp">Importar archivo</label><input type="file" id="bImp" accept=".json,application/json" hidden><button class="btn ghost" id="bCopy" type="button">📋 Copiar respaldo</button><button class="btn ghost" id="bPaste" type="button">📥 Pegar respaldo</button></div><div class="hint" id="bAcc" hidden style="margin-top:6px"></div><textarea id="bTxt" hidden rows="4" placeholder="Pega aquí el respaldo copiado y toca Importar texto" style="width:100%;margin-top:8px;font-size:13px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;padding:8px"></textarea><button class="btn small" id="bTxtGo" type="button" hidden style="margin-top:6px">Importar texto</button><div class="hint" id="bMsg"></div></div>
+    <div class="box" id="nubeBox"><b>☁️ Nube (prueba)</b><div class="hint" id="nubeEst">Sin conectar. Al entrar, los cambios que publique el supervisor desde la Checklist llegan solos.</div><div id="nubeForm"><input id="nubeMail" type="email" autocomplete="username" placeholder="Correo (ej. iris@prueba.com)" style="width:100%;font-size:16px;padding:10px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><input id="nubePass" type="password" autocomplete="current-password" placeholder="Contraseña" style="width:100%;font-size:16px;padding:10px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><button type="button" class="btn" id="nubeEntrar" style="width:100%;margin-top:4px">☁️ Entrar</button><input id="nubeSiglas" maxlength="4" placeholder="Siglas (solo registro)" style="width:100%;font-size:16px;padding:10px;margin:8px 0 4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;text-transform:uppercase"><button type="button" class="btn ghost" id="nubeRegistrar">Solicitar acceso por primera vez</button><button type="button" class="btn ghost" id="nubeRecuperar">Olvidé mi contraseña</button></div><div id="nubeAdminPanel" hidden><b>👥 Usuarios</b> <span id="usrBadge" class="solb" hidden></span><div class="hint">Solo el administrador ve este panel. Cada acción pide confirmar tu identidad.</div><div class="chips" id="usrTabs" style="margin-top:8px"></div><input id="usrQ" type="search" placeholder="Buscar siglas o correo" style="width:100%;font-size:16px;padding:9px;margin:8px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><div id="usrLista" class="hint">Cargando…</div><button type="button" class="btn ghost small" id="usrMigrar" style="margin-top:8px">Registrar siglas de usuarios activos</button><div id="anuAdm" style="margin-top:14px;border-top:1px solid var(--line);padding-top:10px"><b>🛫 Anuncios y felicitaciones</b><div class="hint">Ventana que cada persona ve <b>una sola vez</b> al abrir la app, entre las fechas que pongas (llega también a la versión del personal).</div><input id="anuTit" maxlength="120" value="¡Feliz Día del Controlador Aéreo!" style="width:100%;font-size:16px;padding:9px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;box-sizing:border-box" aria-label="Título"><textarea id="anuTxt" maxlength="2000" rows="6" style="width:100%;font-size:16px;padding:9px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;box-sizing:border-box" aria-label="Texto">Hoy celebramos a quienes, turno tras turno, mantienen seguro el cielo de Centroamérica.&#10;&#10;Gracias por su profesionalismo, su calma bajo presión y su compromiso con cada vuelo, de día y de noche.&#10;&#10;¡Feliz Día del Controlador Aéreo! 🛫</textarea><select id="anuTipo" style="width:100%;font-size:16px;padding:9px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;box-sizing:border-box" aria-label="Tipo"><option value="felicitacion">🛫 Felicitación</option><option value="aviso">📢 Aviso</option><option value="importante">⚠️ Importante</option></select><label class="hint">Desde el día<input type="date" id="anuDesde" value="2026-10-30" style="width:100%;font-size:16px;padding:9px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;box-sizing:border-box"></label><label class="hint">Hasta el día (incluido)<input type="date" id="anuHasta" value="2026-10-30" style="width:100%;font-size:16px;padding:9px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;box-sizing:border-box"></label><input id="anuBoton" maxlength="40" value="¡Gracias!" style="width:100%;font-size:16px;padding:9px;margin:4px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;box-sizing:border-box" aria-label="Texto del botón"><div class="acts" style="justify-content:flex-start;margin-top:6px"><button type="button" class="btn ghost small" id="anuPrev">👁️ Vista previa</button><button type="button" class="btn small" id="anuPub">Publicar anuncio</button></div><div class="hint" id="anuEst" style="margin-top:6px"></div><div id="anuLista" class="hint"></div></div><div id="updAdm" style="margin-top:14px;border-top:1px solid var(--line);padding-top:10px"><b>⬆️ Actualizaciones</b><div class="hint" id="updAdmEst">—</div><div class="hint" style="margin-top:6px">Pega los datos del resumen de «Compilar APK ShiftOnDuty» (el SHA-256 de la compilación oficial, NO el de la página de GitHub). Sube antes el APK a GitHub Releases (charliedays2020/shiftonduty-apk, etiqueta v&lt;versionCode&gt;, archivo &lt;versionCode&gt;-&lt;16 primeros del SHA&gt;.apk, único archivo). Primero se publica en <b>prueba</b> (solo tú la ves); después de probarla, para el personal.</div><input id="updVc" inputmode="numeric" placeholder="versionCode (ej. 45)" style="width:100%;font-size:16px;padding:9px;margin-top:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><input id="updVn" placeholder="Versión (ej. 1.0.2)" maxlength="20" style="width:100%;font-size:16px;padding:9px;margin-top:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"><input id="updSha" placeholder="SHA-256 (64 caracteres)" maxlength="64" autocapitalize="off" spellcheck="false" style="width:100%;font-size:14px;padding:9px;margin-top:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font-family:monospace"><textarea id="updNotas" rows="2" maxlength="500" placeholder="Novedades para el personal (opcional)" style="width:100%;font-size:15px;padding:9px;margin-top:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit"></textarea><div class="acts" style="justify-content:flex-start;margin-top:8px;flex-wrap:wrap;gap:8px"><button type="button" class="btn small" id="updPubPrueba">Verificar y publicar en prueba</button><button type="button" class="btn small ghost" id="updPubGeneral">Publicar para el personal</button></div><div class="acts" style="justify-content:flex-start;margin-top:12px;flex-wrap:wrap;gap:8px"><button type="button" class="btn small danger" id="updStopPrueba">Detener prueba</button><button type="button" class="btn small danger" id="updStopGeneral">Detener personal</button></div></div></div><button type="button" class="btn ghost" id="nubeSalir" hidden>Salir de la nube</button></div><div class="box" id="updBox" hidden><b>⬆️ Actualización disponible</b><div class="hint" id="updTxt"></div><button class="btn" id="updAbrir2" type="button" style="margin-top:8px">Actualizar ShiftOnDuty</button></div><div class="box"><b>Respaldo completo</b><div class="hint">Guarda tus siglas, horarios, cambios, deudas, horario real, vencimientos, eventos y alarmas. Úsalo antes de cambiar de celular.</div><div class="acts" style="justify-content:flex-start;margin-top:8px"><button class="btn ghost" id="bExp" type="button">Descargar respaldo</button><label class="btn ghost" for="bImp">Importar archivo</label><input type="file" id="bImp" accept=".json,application/json" hidden><button class="btn ghost" id="bCopy" type="button">📋 Copiar respaldo</button><button class="btn ghost" id="bPaste" type="button">📥 Pegar respaldo</button></div><div class="hint" id="bAcc" hidden style="margin-top:6px"></div><textarea id="bTxt" hidden rows="4" placeholder="Pega aquí el respaldo copiado y toca Importar texto" style="width:100%;margin-top:8px;font-size:13px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;padding:8px"></textarea><button class="btn small" id="bTxtGo" type="button" hidden style="margin-top:6px">Importar texto</button><div class="hint" id="bMsg"></div></div>
   </div>
   <div class="box autor"><b>Acerca de</b><div><b>ShiftOnDuty</b> <span id="appV2"></span></div><div>Creada por <b>charlied@ys</b></div><div class="hint">© 2026 charlied@ys · Todos los derechos reservados. Se comparte para uso personal; no se permite venderla, modificarla ni publicarla con otro nombre.</div></div>
   <div class="acts"><button type="button" class="btn" id="cClose">Listo</button></div>
@@ -246,7 +247,7 @@ input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;min-wid
 const $=id=>document.getElementById(id);
 function ask(m){return new Promise(res=>{const bg=document.getElementById('askBg');document.getElementById('askMsg').textContent=m;bg.hidden=false;
   const fin=v=>{bg.hidden=true;si.onclick=no.onclick=null;res(v)};const si=document.getElementById('askSi'),no=document.getElementById('askNo');si.onclick=()=>fin(true);no.onclick=()=>fin(false);si.focus();});}
-const APPV='1.0.1',AUTOR='charlied@ys';
+const APPV='1.0.2',AUTOR='charlied@ys';
 /* El workflow reemplaza esta línea al compilar: número de compilación (= versionCode) y canal ('oficial' o 'prueba'). */
 const BUILD=0,CANAL_APP='dev';const KEY='pendientes-v1';
 /* ===== v52 · Control de acceso (Issue #12) =====
@@ -616,10 +617,23 @@ const MESL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','s
 const normN=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase().replace(/\([^)]*\)/g,' ').replace(/[^A-Z0-9 ]/g,' ').replace(/\bFCO\b/g,' FRANCISCO ').replace(/\s+/g,' ').trim();
 const SIGF={};for(const [h,,s] of CENH.P)SIGF[h]=s;
 const SUPH=new Set(CENH.sup),RADH=new Set(CENH.rad);
+/* 1.0.2 · Habilitaciones CONFIRMADAS por el propietario (29-oct-2026). Mandan sobre el PDF.
+   BE, CZ, JO: Ejecutivo y Planner, NO Supervisor. FM, RL, AS, HM, MC: alumnos de Ejecutivo (nov-2026), siguen SOLO Planner (R1). */
+const HAB_CONF={BE:'EJEC',CZ:'EJEC',JO:'EJEC',FM:'PLAN',RL:'PLAN',AS:'PLAN',HM:'PLAN',MC:'PLAN'};
+/* BUILD 49 · Entrenamiento alumno–instructor–sector (E3). Listas CONFIRMADAS por el propietario (29-oct-2026).
+   - ALUMNOS de Ejecutivo: conservan SOLO Planner (R1). Nunca cuentan como cobertura de un sector Ejecutivo.
+   - INSTRUCTORES autorizados (9). Instruir NO concede habilitaciones (R11, R12): habil() no los consulta.
+   - INSTR_POS: posiciones en las que cada instructor está autorizado a instruir. D10 PENDIENTE: vacío = ninguna
+     confirmada, así que toda relación de entrenamiento recibida por QR queda BLOQUEADA (falla cerrada).
+   - VERDE_INSTR: color de instrucción del PDF (#92D050). Solo es una señal: no concede nada ni define roles. */
+const ALUMNOS=new Set(['AS','FM','HM','RL','MC']);
+const INSTRUCTORES=new Set(['HF','FC','VO','JF','GR','MR','SB','JO','MF']);
+const INSTR_POS={};
+const VERDE_INSTR=[146,208,80];
 /* jubilados que pueden hacer turnos de supervisor, aunque salgan en otra sección del horario */
 const JUBSUP=new Set(['VH','JP','NT']);
 /* restricciones del personal (confirmadas por charlied@ys) */
-const REST={RO:{solo:'P',m:'Solo puede hacer turnos de planner'},MX:{nada:1,m:'No hace turnos operativos'},YP:{nada:1,m:'No disponible para turnos'},FC:{noC:1},AB:{noC:1}};
+const REST={RO:{solo:'P',noC:1,m:'Solo puede hacer turnos de planner'},MX:{nada:1,m:'No hace turnos operativos'},YP:{nada:1,m:'No disponible para turnos'},FC:{noC:1},AB:{noC:1}};
 const SECC=[[/CONTROLADOR\s+EJECUTIVO/,'EJEC'],[/CONTROLADOR\s+PLANIFIC/,'PLAN'],[/RADIO\s+SAR|CENAMER\s+RADIO/,'RADIO'],[/SUPERVISOR\s+ATS/,'SUP']];
 function siglaDe(name){const ex=String(name||'').match(/\(([A-Z]{2,4})\)\s*$/i);if(ex)return ex[1].toUpperCase();const n=normN(name);if(SIGF[hN(n)])return SIGF[hN(n)];if(T.custom[n])return T.custom[n];
   const w=n.split(' ').filter(Boolean).map(hN),sur=w[w.length-1]||'';let best='',bs=0;
@@ -651,28 +665,45 @@ async function loadPdfjs(){if(window.pdfjsLib)return;const ls=src=>new Promise((
 function juntarBarras(a){const out=[];for(const z of a){const p=out[out.length-1];
     if(p&&(/\/$/.test(p.s)||/^\//.test(z.s))&&z.x-(p.x+(p.w||0))<8){out[out.length-1]={...p,s:p.s+z.s,w:(z.x+(z.w||0))-p.x};continue}
     out.push({...z});}return out;}
+/* BUILD 49 · Casillas en verde (#92D050 = instrucción) y, desde la 54, en fucsia (turno extra). Lee los rectángulos de relleno de la página con pdf.js
+   y los lleva al mismo espacio que el texto. Si algo falla, devuelve [] (sin verde: nunca se inventa instrucción). */
+async function verdesPagina(page){const out=[],fuc=[];try{const O=window.pdfjsLib.OPS,ol=await page.getOperatorList();
+  const mul=(m,n)=>[m[0]*n[0]+m[2]*n[1],m[1]*n[0]+m[3]*n[1],m[0]*n[2]+m[2]*n[3],m[1]*n[2]+m[3]*n[3],m[0]*n[4]+m[2]*n[5]+m[4],m[1]*n[4]+m[3]*n[5]+m[5]];
+  const pt=(m,x,y)=>[m[0]*x+m[2]*y+m[4],m[1]*x+m[3]*y+m[5]];
+  let ctm=[1,0,0,1,0,0],col=null,box=[];const pila=[];const FILL=new Set([O.fill,O.eoFill,O.fillStroke,O.eoFillStroke,O.closeFillStroke,O.closeEOFillStroke]);
+  for(let i=0;i<ol.fnArray.length;i++){const f=ol.fnArray[i],a=ol.argsArray[i];
+    if(f===O.save)pila.push([ctm,col]);else if(f===O.restore){const t=pila.pop();if(t){ctm=t[0];col=t[1];}}
+    else if(f===O.transform)ctm=mul(ctm,a);
+    else if(f===O.setFillRGBColor)col=[a[0],a[1],a[2]];
+    else if(f===O.constructPath){const mm=a[2];if(mm&&mm.length===4){const p1=pt(ctm,mm[0],mm[2]),p2=pt(ctm,mm[1],mm[3]);box.push([Math.min(p1[0],p2[0]),Math.min(p1[1],p2[1]),Math.max(p1[0],p2[0]),Math.max(p1[1],p2[1])]);}}
+    else if(FILL.has(f)){if(col&&col.every((v,k)=>Math.abs(v-VERDE_INSTR[k])<=2))out.push(...box);else if(col&&col[0]>=200&&col[1]<=80&&col[2]>=200)fuc.push(...box);box=[];}
+    else if(f===O.endPath||f===O.stroke||f===O.closeStroke)box=[];}
+  }catch(_){return {v:[],x:[]};}return {v:out,x:fuc};}
+const enVerde=(V,z)=>{const x=z.x+(z.w||0)/2,y=z.y+2;return V.some(r=>x>=r[0]-.5&&x<=r[2]+.5&&y>=r[1]-.5&&y<=r[3]+.5);};
 async function leerHorario(file){await loadPdfjs();const bytes=new Uint8Array(await file.arrayBuffer());const pdf=await window.pdfjsLib.getDocument({data:bytes.slice(0),isEvalSupported:false}).promise;
-  let month=null,year=null,version=null;const rows=[];
+  let month=null,year=null,version=null,nVerde=0;const rows=[];
   for(let pn=1;pn<=pdf.numPages;pn++){const page=await pdf.getPage(pn);const tc=await page.getTextContent();const raw=tc.items.map(i=>i.str).join(' ');
     const mm=raw.match(/MES\s+DE\s+([A-ZÁÉÍÓÚÑ]+)\s+(20\d{2})(?:\s+V\s*(\d{1,2}))?/i);if(mm&&month===null){month=MESES[normN(mm[1])];year=+mm[2];if(mm[3])version=+mm[3];}
-    const items=tc.items.filter(i=>i.str.trim()).map(i=>({s:i.str.trim(),x:i.transform[4],y:i.transform[5],w:i.width||0}));
+    const items=tc.items.filter(i=>i.str.trim()).map(i=>({s:i.str.trim(),x:i.transform[4],y:i.transform[5],w:i.width||0}));const CP=await verdesPagina(page),V=CP.v,X=CP.x;nVerde+=V.length;
     const lines=[];for(const it of items.sort((a,b)=>b.y-a.y||a.x-b.x)){let ln=lines.find(l=>Math.abs(l.y-it.y)<2);if(!ln){ln={y:it.y,a:[]};lines.push(ln)}ln.a.push(it)}
     let cab=null,sec=null;
     for(const ln of lines){ln.a.sort((a,b)=>a.x-b.x);const arr=juntarBarras(ln.a);{const tx=normN(arr.map(z=>z.s).join(' '));for(const [re,v] of SECC)if(re.test(tx)){sec=v;break}}const cb=cabecera(arr);if(cb){cab=cb;continue}
       const ci=arr.findIndex(z=>/^(?:\d{1,4}|S\/N)$/i.test(z.s));if(ci<0)continue;
-      if(cab){const f=filaCols(arr,ci,cab);if(f.name&&f.cel.length)f.cel.forEach(({z,d})=>{const ps=dutyParts(z.s);(ps.length?ps:(/^[A-Z][A-Z0-9]{0,4}$/.test(z.s.toUpperCase())?[z.s.toUpperCase()]:[])).forEach(code=>rows.push({name:f.name,day:d,code,sec}));});continue}
+      if(cab){const f=filaCols(arr,ci,cab);if(f.name&&f.cel.length)f.cel.forEach(({z,d})=>{const ps=dutyParts(z.s);const vz=enVerde(V,z),xz=enVerde(X,z);(ps.length?ps:(/^[A-Z][A-Z0-9]{0,4}$/.test(z.s.toUpperCase())?[z.s.toUpperCase()]:[])).forEach(code=>rows.push({name:f.name,day:d,code,sec,v:vz,x:xz}));});continue}
       let first=ci+1;while(first<arr.length&&!isDuty(arr[first].s))first++;if(first<=ci+1)continue;const name=arr.slice(ci+1,first).map(z=>z.s).join(' ');
       arr.slice(first).filter(z=>isDuty(z.s)).slice(0,31).forEach((z,i)=>dutyParts(z.s).forEach(code=>rows.push({name,day:i+1,code,sec})));}}
   if(version===null){const v=String(file.name||'').match(/\bV(?:ERSI[OÓ]N)?[\s._-]?(\d{1,2})\b/i);if(v)version=+v[1];}
   if(month===null||!year)throw {code:'mes'};
   const dim=new Date(year,month+1,0).getDate();
-  const out=rows.filter(r=>r.day<=dim).map(r=>({n:r.name,s:siglaDe(r.name),d:r.day,c:r.code}));
+  const out=rows.filter(r=>r.day<=dim).map(r=>Object.assign({n:r.name,s:siglaDe(r.name),d:r.day,c:r.code},r.v?{v:1}:{},r.x?{x:1}:{}));
   const secc={};rows.forEach(r=>{const sg=siglaDe(r.name);if(sg&&r.sec&&!secc[sg])secc[sg]=r.sec;});
-  return {mk:year*12+month,month,year,version,file:file.name,rows:out,secc,cargado:Date.now(),_bytes:bytes};}
+  return {mk:year*12+month,month,year,version,file:file.name,rows:out,secc,verde:1,nVerde,cargado:Date.now(),_bytes:bytes};}
 /* --- índice --- */
 let idx=null;
 function I(){if(idx)return idx;idx={by:new Map(),people:new Map(),hab:new Map()};
-  for(const [mk,m] of Object.entries(T.meses))for(const r of m.rows){const sg=r.s||siglaDe(r.n);if(!sg)continue;const k=mk+'|'+r.d+'|'+sg;let a=idx.by.get(k);if(!a){a=[];idx.by.set(k,a)}a.push(String(r.c).toUpperCase());if(!idx.people.has(sg))idx.people.set(sg,r.n);}
+  idx.verde=new Set();idx.extra=new Set();idx.pdf=new Map();
+  for(const [mk,m] of Object.entries(T.meses))for(const r of m.rows){const sg=r.s||siglaDe(r.n);if(!sg)continue;const k=mk+'|'+r.d+'|'+sg;let a=idx.by.get(k);if(!a){a=[];idx.by.set(k,a)}a.push(String(r.c).toUpperCase());if(!idx.people.has(sg))idx.people.set(sg,r.n);if(r.v)idx.verde.add(k);if(r.x)idx.extra.add(k);}
+  idx.by.forEach((v,k)=>idx.pdf.set(k,v.slice()));
   idx.rel=new Map();idx.relP=new Map();
   /* horario real recibido por QR desde la Checklist: quién entra X quién sale, por casilla */
   for(const [mk,R0] of Object.entries(T.real||{})){if(!T.meses[mk])continue;
@@ -682,7 +713,46 @@ function I(){if(idx)return idx;idx={by:new Map(),people:new Map(),hab:new Map()}
       const r={rel:e.rel,code:e.code,ex:e.ex,ho:e.ho,of:true};idx.rel.set(k0+e.code,r);for(const s of e.orig.concat(e.act))idx.relP.set(k0+s,r);}}
   idx.cmb=new Map();for(const c of (T.cambios||[])){for(const o of c.ovr){if(!T.meses[o.mk])continue;const k=o.mk+'|'+o.d+'|'+o.sg;idx.by.set(k,o.codes.slice());idx.cmb.set(k,c);}
     for(const r of relDeCambio(c)){const k0=r.mk+'|'+r.d+'|';idx.rel.set(k0+r.code,r);idx.relP.set(k0+r.gana,r);idx.relP.set(k0+r.pierde,r);}}
+  /* BUILD 49 · relaciones de entrenamiento del QR (7.º campo). Solo las válidas ocupan al alumno ese día (condición 4);
+     las inválidas se BLOQUEAN: no se aplican, y la cobertura del instructor («vigente») queda como siempre. */
+  idx.entP=new Map();idx.entI=new Map();idx.entMal=[];
+  /* Ambigüedad (auditoría 2f): si un alumno figura el mismo día con más de un instructor o sector, se bloquean TODAS
+     esas relaciones (no se elige ninguna; el resultado no depende del orden de las líneas). Líneas idénticas no son ambiguas. */
+  const varias=new Map();
+  for(const [mk,R0] of Object.entries(T.real||{})){if(!T.meses[mk])continue;
+    for(const e of R0.ent||[])if(e.tr)for(const a of e.tr.a){const k=mk+'|'+e.d+'|'+a;if(!varias.has(k))varias.set(k,new Set());varias.get(k).add(e.tr.i+'@'+e.code);}}
+  for(const [mk,R0] of Object.entries(T.real||{})){if(!T.meses[mk])continue;
+    for(const e of R0.ent||[]){if(!e.tr)continue;const amb=e.tr.a.filter(a=>varias.get(mk+'|'+e.d+'|'+a).size>1);
+      const m=amb.length?'Ambigua: '+amb.join(', ')+' figura con varios instructores o sectores ese día; ninguna se aplica (lo decide el supervisor)':entMotivo(+mk,e);if(m){idx.entMal.push({mk:+mk,d:e.d,code:e.code,tr:e.tr,m});continue}
+      const k0=mk+'|'+e.d+'|';for(const a of e.tr.a){idx.entP.set(k0+a,{code:e.code,i:e.tr.i});const cs=(idx.by.get(k0+a)||[]).filter(x=>x!=='I');if(!cs.includes(e.code))cs.push(e.code);idx.by.set(k0+a,cs);}
+      idx.entI.set(k0+e.tr.i,{code:e.code,a:e.tr.a.slice()});}}
   return idx;}
+/* BUILD 49 · Instructor válido = las TRES condiciones (R11): habilitado para la posición + autorizado para instruir en
+   ella (INSTRUCTORES + INSTR_POS, D10) + asignado (único en «vigente» del QR). Devuelve null si es válido o el motivo. */
+function instrMotivo(i,code){if(ALUMNOS.has(i))return i+' es alumno: no puede ser instructor';
+  if(!INSTRUCTORES.has(i))return i+' no está en la lista de instructores autorizados';
+  const hm=habMotivo(i,code);if(hm)return i+': '+hm;
+  const pos=habPos(code);if(!(INSTR_POS[i]||[]).includes(pos))return 'Falta confirmar en qué posiciones puede instruir '+i+' ('+(ROL[pos]||pos)+', D10)';
+  return null;}
+/* Relación de entrenamiento de una casilla del QR (opción B): «vigente» = SOLO el instructor; el 7.º campo dice quién instruye
+   a quién. Se contrasta con el PDF: el alumno debe tener ese mismo código ese día y en verde. Null = válida; si no, el motivo. */
+function entMotivo(mk,e){const t=e.tr,ix=idx;if(!t)return null;
+  if(habPos(e.code)!=='E')return 'La instrucción solo se registra en sectores de Ejecutivo ('+e.code+')';
+  if(e.act.length!==1||e.act[0]!==t.i)return '«Vigente» debe tener solo al instructor '+t.i+' (tiene '+(e.act.join('/')||'nadie')+')';
+  if(t.a.includes(t.i)||new Set(t.a).size!==t.a.length)return 'Alumnos repetidos o iguales al instructor';
+  const ma=instrMotivo(t.i,e.code);if(ma)return ma;
+  const m=T.meses[mk];if(!m||!m.verde)return 'Vuelve a cargar el PDF de '+MESL[mk%12]+' para comprobar la instrucción (verde)';
+  for(const a of t.a){if(!ALUMNOS.has(a))return a+' no está en la lista de alumnos';
+    const k=mk+'|'+e.d+'|'+a,pc=(ix.pdf.get(k)||[]);
+    if(!pc.includes(e.code))return 'El PDF no tiene a '+a+' en '+e.code+' ese día (tiene '+(pc.join('/')||'nada')+'): lo verifica el supervisor';
+    if(!ix.verde.has(k))return 'En el PDF, '+a+' no está en verde (instrucción) ese día: lo verifica el supervisor';}
+  return null;}
+/* Alumno con código de Ejecutivo ese día: NUNCA es cobertura (R1). Devuelve los datos para mostrarlo, o null. */
+function entDe(sg,mk,day){if(!ALUMNOS.has(sg))return null;[mk,day]=norm3(mk,day);const k=mk+'|'+day+'|'+sg,ix=I();
+  const cs=(ix.by.get(k)||[]).filter(c=>habPos(c)==='E');if(!cs.length)return null;const r=ix.entP.get(k),v=ix.verde.has(k);
+  return {codes:cs,i:r?r.i:'',v,txt:r?'EN ENTRENAMIENTO con '+r.i:v?'EN ENTRENAMIENTO · instructor sin confirmar en la Checklist':'⛔ '+cs.join('/')+' sin habilitación de Ejecutivo: no cuenta como cobertura'};}
+/* Códigos que SÍ son cobertura operativa (sin los de entrenamiento del alumno) */
+function opsCob(sg,mk,day){const cs=codesOn(sg,mk,day).codes.filter(c=>fam(c));return ALUMNOS.has(sg)?cs.filter(c=>habPos(c)!=='E'):cs;}
 /* notación de la Checklist para un cambio registrado en la app: "RO X CD" = RO entra, CD sale */
 function relDeCambio(c){const out=[],g=new Map();for(const o of c.ovr||[]){const k=o.mk+'|'+o.d;if(!g.has(k))g.set(k,[]);g.get(k).push(o);}
   for(const [k,L] of g){const [mk,d]=k.split('|').map(Number);
@@ -697,9 +767,35 @@ function norm3(mk,day){while(day<1){mk--;day+=dimOf(mk)}while(day>dimOf(mk)){day
 function codesOn(sg,mk,day,mods){[mk,day]=norm3(mk,day);const k=mk+'|'+day+'|'+sg;if(mods&&mods.has(k))return {known:true,codes:mods.get(k)};if(!T.meses[mk])return {known:false,codes:[]};return {known:true,codes:I().by.get(k)||[]};}
 function habil(sg){const ix=I();if(ix.hab.has(sg))return ix.hab.get(sg);const n=normN(ix.people.get(sg)||'');let h;
   const sc=(()=>{const ms=Object.values(T.meses).sort((a,b)=>b.mk-a.mk);for(const m of ms)if(m.secc&&m.secc[sg])return m.secc[sg];return ''})();
-  if(JUBSUP.has(sg)||SUPH.has(hN(n)))h='SUP';else if(RADH.has(hN(n)))h='RADIO';else if(sc)h=sc;else{const all=[];ix.by.forEach((v,k)=>{if(k.endsWith('|'+sg))all.push(...v)});h=all.some(c=>{const p=parseCode(c);return p&&p.role==='E'})?'EJEC':all.some(c=>{const p=parseCode(c);return p&&p.role==='P'})?'PLAN':all.some(c=>radShift(c)||c==='DR')?'RADIO':'PLAN';}
+  /* 1.0.2 · SUP y RADIO salen SOLO de las listas fijas (nunca de la sección del PDF: caso BE, CZ y JO, E2.6).
+     Después, las habilitaciones confirmadas por el propietario (HAB_CONF). La sección EJEC/PLAN del PDF y los códigos
+     quedan solo para quien aún no está en la matriz maestra (E1, pendiente). */
+  if(JUBSUP.has(sg)||SUPH.has(hN(n)))h='SUP';else if(RADH.has(hN(n)))h='RADIO';else if(HAB_CONF[sg])h=HAB_CONF[sg];else if(ALUMNOS.has(sg))h='PLAN';else if(sc==='EJEC'||sc==='PLAN')h=sc;else{const all=[];ix.by.forEach((v,k)=>{if(k.endsWith('|'+sg))all.push(...v)});h=all.some(c=>{const p=parseCode(c);return p&&p.role==='E'})?'EJEC':all.some(c=>{const p=parseCode(c);return p&&p.role==='P'})?'PLAN':all.some(c=>radShift(c)||c==='DR')?'RADIO':'PLAN';}
   ix.hab.set(sg,h);return h;}
 function habilitado(sg,role){const h=habil(sg);if(role==='S')return h==='SUP';if(role==='E')return h==='SUP'||h==='EJEC';if(role==='P')return h!=='RADIO';if(role==='R')return h==='SUP'||h==='RADIO';return true;}
+/* 1.0.2 · Posición que exige un código, para validar la habilitación:
+   'S' Supervisor (AS/BS/CS) · 'E'/'P' Ejecutivo/Planner (A y B: 1–4; C: 1–2) · 'R' Radio (AR/BR/CR y DR)
+   'NO' = no operativo, no ocupa posición (libre, vacaciones, capacitación, apoyo…)
+   null = parece operativo pero NO es una posición conocida (p. ej. AE5, CE3, AR/C, AX1): no se autoriza. */
+const NO_OPER=new Set(['','I','IL','HO','V','CAP','INC','FER','TRM','STBY','DE','DP','D','DUE','-','—']);
+function habPos(code){const c=String(code==null?'':code).toUpperCase().trim();if(NO_OPER.has(c))return 'NO';
+  const p=parseCode(c);if(p)return p.pos>=1&&p.pos<=(p.shift==='C'?2:4)?p.role:null;
+  if(supShift(c))return 'S';if(radShift(c)||c==='DR')return 'R';return null;}
+/* 1.0.2 · ÚNICA validación de habilitación y restricciones individuales (auditoría 2). La usan puede() y habPuede(),
+   así «¿Quién me cubre?», los intercambios, «¿Puedo hacerle este turno?» y el registro de cambios dan el mismo resultado.
+   Reglas de la Checklist: SUP→S/E/P/R · EJEC→E/P · PLAN→P · RADIO→R, más REST: nada (sin turnos operativos),
+   solo (solo una posición) y noC (sin Turno C: FC, AB y RO, decisión del propietario 28-oct).
+   Código no operativo → no exige habilitación. Posición desconocida → no se autoriza.
+   Devuelve null si puede ocupar la posición, o el motivo si no. */
+function habMotivo(sg,code){const rs=REST[sg];if(rs&&rs.nada)return rs.m;const pos=habPos(code);if(pos==='NO')return null;
+  if(pos===null)return 'Posición desconocida ('+code+'): no se autoriza';
+  if(rs&&rs.solo&&pos!==rs.solo)return rs.m;
+  if(!habilitado(sg,pos))return 'No tiene habilitación para '+code+' (es '+habil(sg)+')';
+  if(rs&&rs.noC&&fam(code)==='C')return 'No puede hacer Turno C (restricción médica)';
+  return null;}
+/* Quien no cumple NO aparece en «¿Quién me cubre?» ni en los intercambios. Las reglas de horario
+   (descanso, X, vacaciones, A+C…) siguen en puede() y se muestran como «No pueden» o «Para revisar». */
+function habPuede(sg,code){return habMotivo(sg,code)===null;}
 function estado(sg,mk,day,mods){const r=codesOn(sg,mk,day,mods);if(!r.known)return {st:'unk',codes:[]};const cs=r.codes;
   const hadHO=cs.includes('HO'),hadIL=cs.includes('IL');const mean=cs.filter(c=>c!=='I'&&c!=='HO'&&c!=='IL');
   if(!mean.length)return {st:'free',hadHO,hadIL,codes:cs};
@@ -713,10 +809,8 @@ function conflicto(op,t){for(const c of op){const f=fam(c);if(!f)continue;if(f==
 function prevC(sg,mk,day,mods){const r=codesOn(sg,mk,day-1,mods);if(!r.known)return {known:false};const cc=r.codes.find(c=>fam(c)==='C');return {known:true,c:!!cc,code:cc||''};}
 function descTrasC(sg,mk,day,mods){const lib=cs=>cs.every(c=>c==='I'||c==='IL');const d1=codesOn(sg,mk,day-1,mods);if(!d1.known||!lib(d1.codes))return null;const d2=codesOn(sg,mk,day-2,mods);if(!d2.known)return null;const cc=d2.codes.find(c=>fam(c)==='C');return cc||null;}
 /* puede la persona sg hacer el código "code" el día (mk,day)? — reglas de CAMBIO DE TURNO de la Checklist */
-function puede(sg,mk,day,code,mods){const t=fam(code)||String(code)[0];const rs=REST[sg];
-  if(rs&&rs.nada)return {e:'no',m:rs.m};if(rs&&rs.solo&&roleOf(code)!==rs.solo)return {e:'no',m:rs.m};
-  {const rl0=roleOf(code);if(rl0&&!habilitado(sg,rl0))return {e:'no',m:'No tiene habilitación para '+code+' (es '+habil(sg)+')'};}
-  if(t==='C'&&rs&&rs.noC)return {e:'no',m:'No puede hacer Turno C (restricción médica)'};
+function puede(sg,mk,day,code,mods){const t=fam(code)||String(code)[0];
+  {const hm=habMotivo(sg,code);if(hm)return {e:'no',m:hm};}
   const s=estado(sg,mk,day,mods);
   if(s.st==='unk')return {e:'rev',m:'No hay horario cargado para ese día'};
   if(s.st==='vac')return {e:'no',m:'Vacaciones (V) ese día'};if(s.st==='cap')return {e:'no',m:'Capacitación (CAP) ese día'};if(s.st==='sup')return {e:'no',m:s.m};
@@ -727,21 +821,19 @@ function puede(sg,mk,day,code,mods){const t=fam(code)||String(code)[0];const rs=
   if(!(pc.known&&pc.c)&&s.st==='free'&&!s.hadHO){const dc=descTrasC(sg,mk,day,mods);if(dc){if(t==='C')return {e:'no',m:'Descanso tras su '+dc+' — no puede otro Turno C (12 h) ese día'};nota='Viene de descanso tras '+dc+' — puede Turno '+t+' (6 h)';}}
   if(pc.known&&pc.c){if(t==='A')return {e:'no',m:'X · sale del '+pc.code+' del día anterior — no le da tiempo para Turno A'};if(t==='B')return {e:'rev',m:'X · sale del '+pc.code+' en la mañana — revisar descanso antes del Turno B'};nota='X · viene de '+pc.code+' — C seguido permitido';}
   if(t==='C'){const n=estado(sg,mk,day+1,mods);if(n.st==='op'){const fs=n.op.map(fam),cod=n.op.join('/');if(fs.includes('A'))return {e:'no',m:'Al día siguiente tiene '+cod+' (Turno A) — saldría del C en la mañana'};if(fs.includes('B'))return {e:'rev',m:'Al día siguiente tiene '+cod+' (Turno B) — revisar descanso'};if(!nota)nota='Al día siguiente tiene '+cod+' — C seguido permitido';}}
-  if(t==='C'&&rs&&rs.noC)return {e:'no',m:'No puede hacer Turno C (restricción médica)'};
-  const rl=roleOf(code);if(rl&&!habilitado(sg,rl))return {e:'no',m:'No tiene habilitación para '+code+' (es '+habil(sg)+')'};
   if(!pc.known)nota+=(nota?' · ':'')+'sin el mes anterior para revisar el día previo';
   return {e:'ok',m:nota||(s.hadIL?'Libre (cumpleaños)':s.hadHO?'Disponible (tenía HO)':'Disponible')};}
 const rank={ok:0,rev:1,no:2};const peor=(a,b)=>rank[a.e]>=rank[b.e]?a:b;
 function sinCodigo(cs,c){const i=cs.indexOf(c);return i<0?cs:cs.slice(0,i).concat(cs.slice(i+1));}
-function opsDe(sg,mk,day){return codesOn(sg,mk,day).codes.filter(c=>fam(c));}
+function opsDe(sg,mk,day){return opsCob(sg,mk,day);}
 function cubrir(mk,day,code){const me=T.sg,mods=new Map();mods.set(mk+'|'+day+'|'+me,sinCodigo(codesOn(me,mk,day).codes,code));const out=[];
-  I().people.forEach((n,sg)=>{if(sg===me)return;const r=puede(sg,mk,day,code,mods);out.push({sg,n,e:r.e,m:r.m});});return out;}
+  I().people.forEach((n,sg)=>{if(sg===me||!habPuede(sg,code))return;const r=puede(sg,mk,day,code,mods);out.push({sg,n,e:r.e,m:r.m});});return out;}
 function mismoDia(mk,day,code){const me=T.sg,out=[];const mine=codesOn(me,mk,day).codes;
-  I().people.forEach((n,sg)=>{if(sg===me)return;for(const c2 of opsDe(sg,mk,day)){if(c2===code)continue;const mods=new Map();mods.set(mk+'|'+day+'|'+me,sinCodigo(mine,code));mods.set(mk+'|'+day+'|'+sg,sinCodigo(codesOn(sg,mk,day).codes,c2));
+  I().people.forEach((n,sg)=>{if(sg===me)return;for(const c2 of opsDe(sg,mk,day)){if(c2===code||!habPuede(sg,code)||!habPuede(me,c2))continue;const mods=new Map();mods.set(mk+'|'+day+'|'+me,sinCodigo(mine,code));mods.set(mk+'|'+day+'|'+sg,sinCodigo(codesOn(sg,mk,day).codes,c2));
     const ella=puede(sg,mk,day,code,mods),yo=puede(me,mk,day,c2,mods);const w=peor(ella,yo);out.push({sg,n,e:w.e,c2,d2:day,ella,yo});}});return out;}
 function otroDia(mk,day,code){const me=T.sg,out=[];const hoy=today();
   for(let k=-7;k<=7;k++){if(!k)continue;const [m2,d2]=norm3(mk,day+k);if(!T.meses[m2])continue;if(new Date(Math.floor(m2/12),m2%12,d2)<hoy)continue;
-    I().people.forEach((n,sg)=>{if(sg===me)return;for(const c2 of opsDe(sg,m2,d2)){const mods=new Map();mods.set(mk+'|'+day+'|'+me,sinCodigo(codesOn(me,mk,day).codes,code));mods.set(m2+'|'+d2+'|'+sg,sinCodigo(codesOn(sg,m2,d2).codes,c2));
+    I().people.forEach((n,sg)=>{if(sg===me)return;for(const c2 of opsDe(sg,m2,d2)){if(!habPuede(sg,code)||!habPuede(me,c2))continue;const mods=new Map();mods.set(mk+'|'+day+'|'+me,sinCodigo(codesOn(me,mk,day).codes,code));mods.set(m2+'|'+d2+'|'+sg,sinCodigo(codesOn(sg,m2,d2).codes,c2));
       const ella=puede(sg,mk,day,code,mods),yo=puede(me,m2,d2,c2,mods);const w=peor(ella,yo);if(w.e!=='no')out.push({sg,n,e:w.e,c2,m2,d2,ella,yo});}});}
   return out;}
 /* --- etiquetas --- */
@@ -751,22 +843,29 @@ const ROL={S:'Supervisor',E:'Ejecutivo',P:'Planner',R:'Radio'};
 const NOMC={I:'Libre',V:'Vacaciones',INC:'Incapacidad',IL:'Cumpleaños (libre)',FER:'Feriado',HO:'HO',TRM:'TRM',CAP:'CAP',STBY:'STBY',DR:'DR'};
 const utc=x=>{const [H,M]=x.split(':').map(Number);return pad((H+6)%24)+pad(M)};
 function etiqueta(c){const p=parseCode(c),f=fam(c),h=horas(c);if(f){const r=roleOf(c);return 'Turno '+f+' · '+ROL[r]+(p?' '+p.pos:'')+(h?' · '+h[0]+'–'+h[1]+'L ('+utc(h[0])+'–'+utc(h[1])+'Z)':'');}return NOMC[c]||c;}
-function claseDia(cs){if(!cs.length)return 'none';const ps=cs.map(parseCode).filter(Boolean);if(ps.some(p=>p.pos===4&&(p.shift==='A'||p.shift==='B')))return 'tn';if(ps.some(p=>p.pos===3&&p.shift==='A'))return 'tz';if(cs.some(c=>fam(c)))return 'tw';return 'tg0';}
+/* BUILD 50 · color de la casilla: verde = instrucción (casilla verde del PDF, o alumno en Ejecutivo), con el mismo formato
+   que el naranja (A4/B4) y el azul (A3). Solo es color: no cambia ninguna regla ni habilitación. */
+function claseCasilla(sg,mk,d,cs){const k=norm3(mk,d).join('|')+'|'+sg,ix=I();if(ix.verde.has(k)||entDe(sg,mk,d))return 'tver';
+  if(ix.extra.has(k))return 'tex';const r=ix.relP.get(k);if(r&&r.ex&&(r.gana===sg||(r.of&&cs.includes(r.code))))return 'tex';return claseDia(cs);}
+function claseDia(cs,en){if(en)return 'tent';if(!cs.length)return 'none';const ps=cs.map(parseCode).filter(Boolean);if(ps.some(p=>p.pos===4&&(p.shift==='A'||p.shift==='B')))return 'tn';if(ps.some(p=>p.pos===3&&p.shift==='A'))return 'tz';if(cs.some(c=>fam(c)))return 'tw';return 'tg0';}
 function descDia(sg,mk,day){const cs=codesOn(sg,mk,day).codes;if(!cs.length)return '—';const pc=prevC(sg,mk,day);
-  const parts=cs.filter(c=>!(c==='I'&&cs.length>1)).map(etiqueta);let t=parts.join(' + ');if(pc.known&&pc.c&&cs.every(c=>c==='I'||c==='IL'))t+=' · sales del '+pc.code+' en la mañana (X)';const rl=I().relP.get(norm3(mk,day).join('|')+'|'+sg);if(rl)t+=' · '+relTxt(rl)+(rl.of?' (Checklist)':'');return t;}
+  const parts=cs.filter(c=>!(c==='I'&&cs.length>1)).map(etiqueta);let t=parts.join(' + ');if(pc.known&&pc.c&&cs.every(c=>c==='I'||c==='IL'))t+=' · sales del '+pc.code+' en la mañana (X)';const rl=I().relP.get(norm3(mk,day).join('|')+'|'+sg);if(rl)t+=' · '+relTxt(rl)+(rl.of?' (Checklist)':'');t+=entTxt(sg,mk,day);return t;}
+/* BUILD 49 · texto de entrenamiento/instrucción del día */
+function entTxt(sg,mk,day){const en=entDe(sg,mk,day);if(en)return ' · 🎓 '+en.txt;const k=norm3(mk,day).join('|')+'|'+sg,ix=I(),r=ix.entI.get(k);
+  if(r)return ' · 🎓 Instruyes a '+r.a.join(', ')+' ('+r.code+')';if(ix.verde.has(k))return ' · 🟩 Instrucción según el PDF (sin confirmar en la Checklist)';return '';}
 const mkHoy=()=>{const t=today();return t.getFullYear()*12+t.getMonth()};
 const fechaDe=(mk,d)=>new Date(Math.floor(mk/12),mk%12,d);
 /* --- vista --- */
 function renderT(){const box=$('vU');if(!box)return;
   if(!T.sg){box.innerHTML='<div class="tsetup"><b>¿Cuáles son tus siglas?</b><span class="hint">Las mismas del horario oficial (ej. CD). Así la app te muestra solo tus turnos.</span><form id="tSgF" class="add"><input id="tSg" maxlength="4" placeholder="Ej. CD" style="text-transform:uppercase"><button type="submit">✔</button></form></div>';return}
   const meses=Object.values(T.meses).sort((a,b)=>a.mk-b.mk);const nom=I().people.get(T.sg)||'';
-  let h='<div class="thead"><div><b>'+esc(T.sg)+'</b> '+(nom?'· '+esc(nom.replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(T.sg)+'</span>':'')+'<div class="hint">'+(meses.length?meses.map(m=>MESL[m.month]+' '+m.year+(m.version?' V'+m.version:'')).join(' · '):'Sin horario cargado')+'</div></div><div class="tbtns">'+(permiso('cargar')?'<label class="btn small" for="tPdf">Cargar horario</label>':'<button type="button" class="btn small ghost" id="tAcc">🔒 Acceso</button>')+(permiso('qr')?'<label class="btn small ghost" for="tQr">📷 Escanear QR</label>':'')+'<input type="file" id="tQr" accept="image/*" capture="environment" hidden>'+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tVer">📄 Ver horario</button>':'')+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tCmb">⇄ Ver cambios</button>':'')+(solActivo()?'<button type="button" class="btn small ghost" id="tSol">📨 Solicitudes'+(solPend()?' <span class="solb">'+solPend()+'</span>':'')+'</button>':'')+'<input type="file" id="tPdf" accept="application/pdf,.pdf" hidden><button class="link" id="tSgCh" type="button">Cambiar siglas</button></div></div>';
+  let h='<div class="thead"><div><b>'+esc(T.sg)+'</b> '+(nom?'· '+esc(nom.replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(T.sg)+'</span>':'')+'<div class="hint">'+(meses.length?meses.map(m=>MESL[m.month]+' '+m.year+(m.version?' V'+m.version:'')).join(' · '):'Sin horario cargado')+'</div></div><div class="tbtns">'+(permiso('cargar')?'<label class="btn small" for="tPdf">Cargar horario</label>':'<button type="button" class="btn small ghost" id="tAcc">🔒 Acceso</button>')+(permiso('qr')?'<label class="btn small ghost" for="tQr">📷 Escanear QR</label>':'')+'<input type="file" id="tQr" accept="image/*" capture="environment" hidden><input type="file" id="tQrG" accept="image/*" hidden>'+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tVer">📄 Ver horario</button>':'')+(tienePdf(tMes||mkHoy())?'<button type="button" class="btn small ghost" id="tCmb">⇄ Ver cambios</button>':'')+(solActivo()?'<button type="button" class="btn small ghost" id="tSol">📨 Solicitudes'+(solPend()?' <span class="solb">'+solPend()+'</span>':'')+'</button>':'')+'<input type="file" id="tPdf" accept="application/pdf,.pdf" hidden><button class="link" id="tSgCh" type="button">Cambiar siglas</button></div></div>';
   if(!permiso('cargar'))h+='<div class="tfalta" id="tAccMsg"><span>'+esc(accMensaje('cargar'))+'</span></div>';
   if(!meses.length){if(!permiso('cargar')){box.innerHTML=h;return}h+='<div class="empty">Carga el <b>PDF del horario oficial</b> del mes. Cuando publiquen otra versión (V2, V3…), cárgala igual y la app actualiza tus turnos y te dice qué cambió.</div>';box.innerHTML=h;return}
   if(nom===''){h+='<div class="empty">No encontré la sigla <b>'+esc(T.sg)+'</b> en el horario. Revisa que sea la correcta.</div>';}
   {const rr=T.real&&T.real[tMes||mkHoy()];if(rr){const f=new Date(rr.ts);h+='<div class="hint" style="margin:-4px 2px 8px">'+(rr.nube?'☁️ Horario real (nube): ':'📋 Horario real de la Checklist: ')+esc(DIA[f.getDay()]+' '+f.getDate()+' '+MES[f.getMonth()]+' '+pad(f.getHours())+':'+pad(f.getMinutes()))+' · por '+esc(rr.por)+' · '+(rr.ent||[]).length+' cambios ('+qrPendientes(tMes||mkHoy(),rr.ent).length+' por venir)</div>';}}
   const t=today(),mk0=mkHoy(),d0=t.getDate();
-  const card=(lbl,k)=>{const [mk,d]=norm3(mk0,d0+k);const cs=codesOn(T.sg,mk,d).codes;return '<button type="button" class="tcard '+claseDia(cs)+'" data-day="'+mk+'|'+d+'"><span>'+lbl+'</span><b>'+esc(T.meses[mk]?descDia(T.sg,mk,d):'Sin horario')+'</b></button>';};
+  const card=(lbl,k)=>{const [mk,d]=norm3(mk0,d0+k);const cs=codesOn(T.sg,mk,d).codes;return '<button type="button" class="tcard '+claseCasilla(T.sg,mk,d,cs)+'" data-day="'+mk+'|'+d+'"><span>'+lbl+'</span><b>'+esc(T.meses[mk]?descDia(T.sg,mk,d):'Sin horario')+'</b></button>';};
   h+=(window.__vencAviso?window.__vencAviso():'');
   h+=pubHTML();
   h+='<div class="tcards">'+card('Hoy',0)+card('Mañana',1)+'</div>';
@@ -791,21 +890,25 @@ function buscar(){const sg=$('bSg').value.trim().toUpperCase(),v=$('bF').value;c
   if(v){const [Y,M,D]=v.split('-').map(Number);const mk=Y*12+M-1;if(!T.meses[mk]){toast('Aún no tienes el horario de '+MESL[M-1]+'. Cárgalo cuando lo publiquen.');return}abrirDia(mk,D,o);return}
   tOtroSg=o;
   {renderT();if(tOtroSg)setTimeout(()=>{const c=document.querySelector('.calt.o');if(c)c.scrollIntoView({behavior:'smooth',block:'start'});},50);}}
-function tripulacion(mk,d,c){const f=fam(c),out=[];I().people.forEach((n,sg)=>{if(sg===T.sg)return;for(const x of codesOn(sg,mk,d).codes)if(fam(x)===f)out.push({sg,c:x});});
+function tripulacion(mk,d,c){const f=fam(c),out=[];I().people.forEach((n,sg)=>{if(sg===T.sg)return;for(const x of opsCob(sg,mk,d))if(fam(x)===f)out.push({sg,c:x});});
   const ord={S:0,E:1,P:2,R:3};return out.sort((a,b)=>((ord[roleOf(a.c)]??9)-(ord[roleOf(b.c)]??9))||a.c.localeCompare(b.c));}
 function tripHTML(mk,d,c){const L=tripulacion(mk,d,c),ix=I(),k0=mk+'|'+d+'|',mi=ix.rel.get(k0+c);const pin=x=>{const r=ix.rel.get(k0+x.c);return r?'<b>'+esc(x.c)+'</b> <span class="rel">'+esc(relTxt(r))+'</span>':'<b>'+esc(x.sg)+'</b> '+esc(x.c)};
-  return '<div class="swc"><div class="swt"><b>'+esc(c)+'</b> · '+esc(etiqueta(c))+(mi?' · <span class="rel">'+esc(relTxt(mi))+'</span>':'')+'</div>'+(L.length?'<div class="swm">👥 Controladores en el turno '+fam(c)+': '+L.filter((x,i,a)=>!ix.rel.has(k0+x.c)||a.findIndex(y=>y.c===x.c)===i).map(pin).join(' · ')+'</div>':'')+'</div>';}
+  return '<div class="swc"><div class="swt"><b>'+esc(c)+'</b> · '+esc(etiqueta(c))+(mi?' · <span class="rel">'+esc(relTxt(mi))+'</span>':'')+'</div>'+(L.length?'<div class="swm">👥 Controladores en el turno '+fam(c)+': '+L.filter((x,i,a)=>!ix.rel.has(k0+x.c)||a.findIndex(y=>y.c===x.c)===i).map(pin).join(' · ')+'</div>':'')+entTrip(mk,d,c)+'</div>';}
+/* BUILD 49 · alumnos en entrenamiento del mismo turno: aparte, nunca como controladores */
+function entTrip(mk,d,c){const f=fam(c),L=[];ALUMNOS.forEach(a=>{const en=entDe(a,mk,d);if(en&&en.codes.some(x=>fam(x)===f))L.push(a+' ('+en.codes.join('/')+') · '+en.txt);});
+  return L.length?'<div class="swm">🎓 En entrenamiento (no cuentan como cobertura): '+esc(L.join(' · '))+'</div>':'';}
 const AJx=()=>{try{const C=window.Capacitor;return C&&C.isNativePlatform&&C.isNativePlatform()?((C.Plugins&&C.Plugins.Ajustes)||(C.registerPlugin?C.registerPlugin('Ajustes'):null)):null}catch(_){return null}};
 function despHora(c){const hh=horas(c);if(!hh)return '';const [H,M]=hh[0].split(':').map(Number);const m=H*60+M-Math.round((+T.cfg.antesA||1.5)*60);return pad(Math.floor((m+1440)%1440/60))+':'+pad((m+1440)%60);}
 function despOK(mk,d,op){if(!AJx()||!op.length||fam(op[0])!=='A')return false;const f=fechaDe(mk,d),t=today();const k=Math.round((f-t)/864e5);if(k===1)return true;if(k===0){const [H,M]=despHora(op[0]).split(':').map(Number);const n=new Date();return H*60+M>n.getHours()*60+n.getMinutes();}return false;}
 async function ponerDesp(mk,d,c){const AJ=AJx();if(!AJ)return;const [H,M]=despHora(c).split(':').map(Number);const f=fechaDe(mk,d);
   try{await AJ.despertador({h:H,m:M,msg:'Turno '+c+' '+DIA[f.getDay()]+' '+d+' '+(horas(c)||[''])[0]});toast('⏰ Despertador puesto a las '+pad(H)+':'+pad(M)+' en el Reloj del teléfono');}catch(_){toast('No pude poner el despertador. Ábrelo en la app Reloj.');}}
-function abrirDia(mk,d,otro){if(!T.sg)return;const f=fechaDe(mk,d),me=T.sg,cs=codesOn(me,mk,d).codes,op=cs.filter(c=>fam(c));
+function abrirDia(mk,d,otro){if(!T.sg)return;const f=fechaDe(mk,d),me=T.sg,cs=codesOn(me,mk,d).codes,op=opsCob(me,mk,d),en=entDe(me,mk,d);
   $('toast').hidden=true;$('bg').hidden=false;$('swSheet').hidden=false;$('swTabs').innerHTML='';
   $('swHead').innerHTML=esc(DIA[f.getDay()]+' '+d+' '+MES[f.getMonth()]+' '+f.getFullYear())+'<small>'+esc(T.meses[mk]?descDia(me,mk,d):'Sin horario de ese mes')+'</small>';
   let h='';for(const c of op)h+=tripHTML(mk,d,c);
+  if(en)h+='<div class="swc" style="border-left-color:#2E9E44"><div class="swt">🎓 <b>'+esc(en.codes.join('/'))+'</b> · '+esc(en.txt)+'</div><div class="swm">No es una cobertura: no cuentas como Ejecutivo en ese sector. Los cambios de tu día de entrenamiento los decide la Checklist.</div>'+en.codes.map(c=>tripHTML(mk,d,c)).join('')+'</div>';
   const o=otro!==undefined?otro:(tOtroSg&&tOtroSg!==me?tOtroSg:'');
-  if(o&&T.meses[mk]){const oc=codesOn(o,mk,d).codes,oop=oc.filter(c=>fam(c));
+  if(o&&T.meses[mk]){const oc=codesOn(o,mk,d).codes,oop=opsCob(o,mk,d);
     h+='<div class="swc" style="border-left-color:#8A5CF6"><div class="swt"><b>'+esc(o)+'</b> · '+esc(nomCorto(o))+'</div><div class="swm">'+esc(descDia(o,mk,d))+'</div>';
     if(oop.length){const code=oop[0],mods=new Map();mods.set(mk+'|'+d+'|'+o,sinCodigo(oc,code));const r=puede(me,mk,d,code,mods);
       h+='<div class="swm" style="margin-top:6px"><b>¿Puedo hacerle su '+esc(code)+'?</b> '+(r.e==='ok'?'🟢 Sí':r.e==='rev'?'🟡 Revisar':'🔴 No')+' · '+esc(r.m)+'</div>';
@@ -825,21 +928,23 @@ let tMes=null,tMesDia='',tVis='lista',tSolo=false,tOtroSg='';
 /* Si la app queda abierta al cambiar el día (p. ej. 31-oct → 1-nov), se vuelve a pintar para mostrar el mes actual. */
 setInterval(()=>{if(T.sg&&tMesDia&&iso(today())!==tMesDia)try{renderT()}catch(_){}},60000);
 function listaMes(sg,mk,solo,propio){if(!T.meses[mk])return '<div class="hint">Sin horario de ese mes.</div>';const dim=dimOf(mk),t=today();let h='<ul class="tlist">';
-  const desde=addD(t,-2);for(let d=1;d<=dim;d++){const f=fechaDe(mk,d);if(f<desde)continue;const cs=codesOn(sg,mk,d).codes;const op=cs.filter(c=>fam(c));if(solo&&!cs.some(c=>c!=='I'&&c!=='IL'))continue;const past=f<t,isT=+f===+t;
+  const desde=addD(t,-2);for(let d=1;d<=dim;d++){const f=fechaDe(mk,d);if(f<desde)continue;const cs=codesOn(sg,mk,d).codes;const op=opsCob(sg,mk,d);if(solo&&!cs.some(c=>c!=='I'&&c!=='IL'))continue;const past=f<t,isT=+f===+t;
     const cod=cs.filter(c=>!(c==='I'&&cs.length>1)).join(' ')||'—';
-    h+='<li class="trow '+claseDia(cs)+(past?' past':'')+(isT?' hoy':'')+'" '+(propio?'data-day':'data-od')+'="'+mk+'|'+d+(propio?'':'|'+sg)+'"><span class="tdate">'+d+' '+DIA[f.getDay()]+'</span><span class="tcode">'+(I().cmb.has(mk+'|'+d+'|'+sg)?'<span class="tcmb">⇄</span> ':'')+esc(cod)+'</span><span class="tdesc">'+esc(descDia(sg,mk,d).replace(cod+' · ',''))+'</span>'+(propio&&op.length&&!past?'<button type="button" class="tsw" data-sw="'+mk+'|'+d+'|'+op[0]+'" aria-label="Cambiar turno">⇄</button>':'<span></span>')+'</li>';}
+    h+='<li class="trow '+claseCasilla(sg,mk,d,cs)+(past?' past':'')+(isT?' hoy':'')+'" '+(propio?'data-day':'data-od')+'="'+mk+'|'+d+(propio?'':'|'+sg)+'"><span class="tdate">'+d+' '+DIA[f.getDay()]+'</span><span class="tcode">'+(I().cmb.has(mk+'|'+d+'|'+sg)?'<span class="tcmb">⇄</span> ':'')+esc(cod)+'</span><span class="tdesc">'+esc(descDia(sg,mk,d).replace(cod+' · ',''))+'</span>'+(propio&&op.length&&!past?'<button type="button" class="tsw" data-sw="'+mk+'|'+d+'|'+op[0]+'" aria-label="Cambiar turno">⇄</button>':'<span></span>')+'</li>';}
   return h+'</ul>';}
 function calMes(sg,mk,otro,gem){const m=T.meses[mk];if(!m)return '<div class="hint">Sin horario de ese mes.</div>';const dim=dimOf(mk),first=new Date(m.year,m.month,1).getDay(),t=today();
   const cod=cs=>esc(cs.filter(c=>c!=='I'||cs.length===1).join(' ').slice(0,7)||'—');
   let h='<div class="tcal'+(otro?' cmp':'')+(gem?' gem':'')+'">'+['D','L','M','M','J','V','S'].map(x=>'<b>'+x+'</b>').join('')+'<i></i>'.repeat(first);
   for(let d=1;d<=dim;d++){const cs=codesOn(sg,mk,d).codes;const f=fechaDe(mk,d);const isT=+f===+t,past=f<t;const cm=I().cmb.has(mk+'|'+d+'|'+sg)||I().relP.has(mk+'|'+d+'|'+sg);
-    h+='<button type="button" class="'+claseDia(cs)+(isT?' hoy':'')+(past?' past':'')+'" data-day="'+mk+'|'+d+(gem?'|'+sg:'')+'"><span>'+d+(cm?'<em>⇄</em>':'')+'</span><small>'+cod(cs)+'</small>'+(otro?'<small class="o">'+cod(codesOn(otro,mk,d).codes)+'</small>':'')+'</button>';}
-  h+='</div>';if(gem)return h;h+='<div class="tleg"><span class="tn">A4 / B4</span><span class="tz">A3</span><span class="tw">Turno</span><span class="tg0">Libre</span>'+'<span style="border:0">Toca un día para ver detalle</span></div>';
+    h+='<button type="button" class="'+claseCasilla(sg,mk,d,cs)+(isT?' hoy':'')+(past?' past':'')+'" data-day="'+mk+'|'+d+(gem?'|'+sg:'')+'"><span>'+d+(cm?'<em>⇄</em>':'')+'</span><small>'+cod(cs)+'</small>'+(otro?'<small class="o">'+cod(codesOn(otro,mk,d).codes)+'</small>':'')+'</button>';}
+  h+='</div>';if(gem)return h;h+='<div class="tleg"><span class="tn">A4 / B4</span><span class="tz">A3</span><span class="tw">Turno</span><span class="tver">Instrucción</span><span class="tex">Extra ✨</span><span class="tg0">Libre</span>'+'<span style="border:0">Toca un día para ver detalle</span></div>';
   return h;}
 /* --- ventana de cambio de turno (como "Quiero cambiar mi turno" de la Checklist) --- */
 let swCtx=null,swTab='cubrir',swRes=[];
 function abrirCambio(mk,day,code,extra){swCtx={mk,day,code,extra:extra||''};swTab='cubrir';$('toast').hidden=true;$('bg').hidden=false;$('swSheet').hidden=false;pintarCambio();}
 function pintarCambio(){const {mk,day,code}=swCtx;const f=fechaDe(mk,day);
+  if(ALUMNOS.has(T.sg)&&habPos(code)==='E'){$('swHead').innerHTML='🎓 Entrenamiento<small>'+esc(DIA[f.getDay()]+' '+day+' '+MES[f.getMonth()])+' · <b>'+esc(code)+'</b></small>';$('swTabs').innerHTML='';
+    $('swBody').innerHTML='<p>Ese día estás <b>EN ENTRENAMIENTO</b> en '+esc(code)+'. No es una cobertura, así que nadie «te cubre» ni se intercambia desde aquí. Cualquier cambio de tu día de entrenamiento lo decide el supervisor en la Checklist.</p>';return}
   $('swHead').innerHTML='⇄ Cambiar mi turno<small>'+esc(DIA[f.getDay()]+' '+day+' '+MES[f.getMonth()])+' · <b>'+esc(code)+'</b> · '+esc(etiqueta(code))+'</small>';
   const lib=!fam(code);$('swHead').innerHTML=lib?'✎ Registrar mi cambio<small>'+esc(DIA[f.getDay()]+' '+day+' '+MES[f.getMonth()])+' · '+esc(descDia(T.sg,mk,day))+'</small>':$('swHead').innerHTML;
   $('swTabs').innerHTML=(lib?[['reg','✎ Registrar a mano']]:[['cubrir','¿Quién me cubre?'],['reg','✎ Registrar a mano']]).map(([k,l])=>'<button type="button" data-swt="'+k+'" aria-pressed="'+(swTab===k)+'">'+l+'</button>').join('');
@@ -851,8 +956,9 @@ function pintarCambio(){const {mk,day,code}=swCtx;const f=fechaDe(mk,day);
   const fd=(m,d)=>{const x=fechaDe(m,d);return DIA[x.getDay()]+' '+d+' '+MES[x.getMonth()]};
   const det=r=>swTab==='cubrir'?esc(r.m):(esc(r.sg)+' te hace tu <b>'+esc(code)+'</b> del '+esc(fd(mk,day))+' · tú le haces su <b>'+esc(r.c2)+'</b> del '+esc(fd(r.m2||mk,r.d2))+
      '<br>Él/ella: '+esc(r.ella.m)+'<br>Tú: '+esc(r.yo.m));
-  const tarj=(r,cls)=>'<div class="swc '+cls+'"><div class="swt"><b>'+esc(r.sg)+'</b> · '+esc((r.n||'').replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(r.sg)+'</span></div><div class="swm">'+det(r)+'</div>'+(cls!=='no'?'<a class="link" onclick="event.stopPropagation()" href="https://wa.me/?text='+encodeURIComponent(msgWA(r))+'" target="_blank" rel="noopener">Enviar por WhatsApp</a><br>'+(swTab==='cubrir'&&solActivo()?'<button type="button" class="btn small" data-solp="'+res.indexOf(r)+'">📨 Pedirle por la app</button><br>':'')+(swTab==='cubrir'?'<button type="button" class="btn small reg" data-reg="'+res.indexOf(r)+'|leDebo">✔ Me cubre · Pendiente de pago</button> <button type="button" class="btn small ghost reg" data-reg="'+res.indexOf(r)+'|pagado">✔ Me cubre · Turno pagado</button>':'<button type="button" class="btn small reg" data-reg="'+res.indexOf(r)+'|int">✔ Ya acordamos · Registrar intercambio</button>')+'':'')+'</div>';
-  let h='<p class="hint">Según el horario publicado. El cambio lo aprueba el supervisor.</p>';
+  const tarj=(r,cls)=>'<div class="swc '+cls+'"><div class="swt"><b>'+esc(r.sg)+'</b> · '+esc((r.n||'').replace(/\s*\([^)]*\)/,''))+' <span class="tg">'+habil(r.sg)+'</span>'+(ie&&ie.code===code&&!instrMotivo(r.sg,code)?' 🎓':'')+'</div><div class="swm">'+det(r)+'</div>'+(cls!=='no'?'<a class="link" onclick="event.stopPropagation()" href="https://wa.me/?text='+encodeURIComponent(msgWA(r))+'" target="_blank" rel="noopener">Enviar por WhatsApp</a><br>'+(swTab==='cubrir'&&solActivo()?'<button type="button" class="btn small" data-solp="'+res.indexOf(r)+'">📨 Pedirle por la app</button><br>':'')+(swTab==='cubrir'?'<button type="button" class="btn small reg" data-reg="'+res.indexOf(r)+'|leDebo">✔ Me cubre · Pendiente de pago</button> <button type="button" class="btn small ghost reg" data-reg="'+res.indexOf(r)+'|pagado">✔ Me cubre · Turno pagado</button>':'<button type="button" class="btn small reg" data-reg="'+res.indexOf(r)+'|int">✔ Ya acordamos · Registrar intercambio</button>')+'':'')+'</div>';
+  const ie=I().entI.get(mk+'|'+day+'|'+T.sg);
+  let h=(ie&&ie.code===code?'<div class="tfalta ent"><span>🎓 Ese día instruyes a <b>'+esc(ie.a.join(', '))+'</b>. Si alguien te cubre y no es instructor autorizado para '+esc(ROL[habPos(code)]||code)+', el alumno queda sin instructor válido y la Checklist debe reasignarlo. Los instructores válidos llevan 🎓.</span></div>':'')+'<p class="hint">Según el horario publicado. Solo aparecen las personas habilitadas y sin restricciones para '+(swTab==='cubrir'?'esta posición':'las dos posiciones')+'. El cambio lo aprueba el supervisor.</p>';
   if(swTab==='cubrir'&&solActivo()&&ok.length)h+='<p><button type="button" class="btn" data-solall="1">📨 Pedir a todos los que pueden ('+ok.length+')</button></p>';
   h+='<div class="swcol ok"><b>🟢 Pueden ('+ok.length+')</b>'+(ok.map(r=>tarj(r,'ok')).join('')||'<div class="hint">Nadie.</div>')+'</div>';
   if(rv.length)h+='<div class="swcol rev"><b>🟡 Para revisar ('+rv.length+')</b>'+rv.map(r=>tarj(r,'rev')).join('')+'</div>';
@@ -1110,6 +1216,8 @@ async function nubePerdioAcceso(e){if(!e||e.code!=='permission-denied'||nube.rev
 const UPD_REPO='charliedays2020/shiftonduty-apk',UPD_BASE='https://github.com/'+UPD_REPO+'/releases/download/',UPD_API='https://api.github.com/repos/'+UPD_REPO+'/releases/',UPD_TARDE='sod-upd-mastarde',UPD={doc:null,ult:0,adm:null,ok:''};
 function updNativoAndroid(){try{const C=window.Capacitor;return !!(C&&typeof C.isNativePlatform==='function'&&C.isNativePlatform()&&typeof C.getPlatform==='function'&&C.getPlatform()==='android')}catch(_){return false}}
 function updActivo(){return CANAL_APP==='oficial'&&BUILD>0&&updNativoAndroid();}
+/* 1.0.2: versión legible con su número de compilación, p. ej. «1.0.2 (48)»; sin número (BUILD 0, web/dev) solo la versión. */
+function updVer(v,vc){return String(v)+(Number.isInteger(vc)&&vc>0?' ('+vc+')':'');}
 function updNombre(vc,sha){return vc+'-'+String(sha).slice(0,16)+'.apk';}
 function updUrl(vc,sha){return UPD_BASE+'v'+vc+'/'+updNombre(vc,sha);}
 const updHex=h=>[...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('');
@@ -1136,12 +1244,12 @@ async function updRevisar(forzar){
     if(d&&d.activo===true&&updValido(d)&&d.versionCode>BUILD&&(!mejor||d.versionCode>mejor.versionCode))mejor=Object.assign({},d,{canal:c});}catch(_){/* sin red o sin permiso: no se ofrece nada */}}
   UPD.doc=mejor;updPintar();}
 function updPintar(){const d=UPD.doc,box=$('updBox');
-  if(box){box.hidden=!d;if(d)$('updTxt').textContent='Versión '+d.versionName+' disponible (tienes '+APPV+').'+(d.canal==='prueba'?' Canal de PRUEBA: solo el administrador la ve.':'');}
+  if(box){box.hidden=!d;if(d)$('updTxt').textContent='Versión '+updVer(d.versionName,d.versionCode)+' disponible · tienes '+updVer(APPV,BUILD)+'.'+(d.canal==='prueba'?' Canal de PRUEBA: solo el administrador la ve.':'');}
   let tarde='';try{tarde=localStorage.getItem(UPD_TARDE)||''}catch(_){}
   let bar=$('updBar');if(!d||tarde===String(d.versionCode)){if(bar)bar.remove();return;}
   if(!bar){bar=document.createElement('div');bar.id='updBar';bar.setAttribute('role','status');
     bar.style.cssText='position:fixed;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top));z-index:9000;background:var(--card);color:var(--ink);border:1px solid var(--accent);border-radius:14px;padding:10px 12px;display:flex;gap:8px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35)';document.body.appendChild(bar);}
-  bar.innerHTML='';const t=document.createElement('div');t.style.cssText='flex:1;font-size:14px';t.textContent='⬆️ Nueva versión '+d.versionName+' de ShiftOnDuty'+(d.canal==='prueba'?' (prueba)':'');
+  bar.innerHTML='';const t=document.createElement('div');t.style.cssText='flex:1;font-size:14px';t.textContent='⬆️ Nueva versión '+updVer(d.versionName,d.versionCode)+' de ShiftOnDuty'+(d.canal==='prueba'?' (prueba)':'');
   const a=document.createElement('button');a.type='button';a.className='btn small';a.id='updAbrir';a.textContent='Actualizar';
   const m=document.createElement('button');m.type='button';m.className='btn small ghost';m.id='updTarde';m.textContent='Más tarde';bar.append(t,a,m);}
 async function updConfirmar(){const d=UPD.doc;if(!d||!updValido(d))return;UPD.ok='';toast('Verificando la actualización en GitHub…');
@@ -1151,7 +1259,7 @@ async function updConfirmar(){const d=UPD.doc;if(!d||!updValido(d))return;UPD.ok
   const w=document.createElement('div');w.id='updModal';w.setAttribute('role','dialog');w.setAttribute('aria-modal','true');w.setAttribute('aria-labelledby','updT');
   w.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(2,8,18,.65);display:flex;align-items:center;justify-content:center;padding:18px';
   const c=document.createElement('div');c.style.cssText='background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;max-width:420px;width:100%;max-height:88vh;overflow:auto;padding:18px';
-  const h=document.createElement('h2');h.id='updT';h.style.cssText='font-size:20px;margin:0 0 10px;text-transform:none;letter-spacing:normal';h.textContent='⬆️ Actualizar ShiftOnDuty a '+d.versionName;c.appendChild(h);
+  const h=document.createElement('h2');h.id='updT';h.style.cssText='font-size:20px;margin:0 0 10px;text-transform:none;letter-spacing:normal';h.textContent='⬆️ Actualizar ShiftOnDuty a '+updVer(d.versionName,d.versionCode);c.appendChild(h);
   const par=(txt,st)=>{const p=document.createElement('p');p.style.cssText='margin:0 0 10px;'+(st||'');p.textContent=txt;c.appendChild(p);};
   String(d.notas||'').slice(0,500).split(/\n/).filter(x=>x.trim()).forEach(x=>par(x.trim(),'color:var(--muted)'));
   par('✅ Tus horarios, cambios, alarmas y sesión se conservan.');
@@ -1161,7 +1269,7 @@ async function updConfirmar(){const d=UPD.doc;if(!d||!updValido(d))return;UPD.ok
   const bt=(id,txt,cl)=>{const b=document.createElement('button');b.type='button';b.id=id;b.className='btn'+(cl?' '+cl:'');b.textContent=txt;acts.appendChild(b);return b;};
   bt('updIr','Descargar actualización');bt('updResp','Descargar respaldo primero (opcional)','ghost');bt('updNo','Cancelar','ghost');c.appendChild(acts);w.appendChild(c);document.body.appendChild(w);}
 function updIr(){const d=UPD.doc,w=document.getElementById('updModal');if(w)w.remove();if(!d||!updValido(d)||d.url.indexOf(UPD_BASE)!==0||UPD.ok!==d.sha256)return;UPD.ok='';
-  window.open(d.url,'_blank');toast('Descargando '+d.versionName+'… Cuando termine, toca el archivo e instala encima.');}
+  window.open(d.url,'_blank');toast('Descargando '+updVer(d.versionName,d.versionCode)+'… Cuando termine, toca el archivo e instala encima.');}
 document.addEventListener('click',e=>{const id=e.target&&e.target.id;
   if(id==='updAbrir'||id==='updAbrir2'){void updConfirmar();return}
   if(id==='updTarde'){const d=UPD.doc;if(d){try{localStorage.setItem(UPD_TARDE,String(d.versionCode))}catch(_){}}updPintar();return}
@@ -1209,6 +1317,28 @@ async function updDetener(canal){if(nube.rol!=='admin')return;await updAdmLeer()
   if(!confirm('¿Detener el aviso de la versión '+d.versionName+' ('+(canal==='prueba'?'prueba':'personal')+')?\n\nNadie más verá el botón. No se borra nada.'))return;
   if(!await adminVerificar()){toast('Acción cancelada: identidad no confirmada.');return}
   await updEscribir(canal,Object.assign({},d,{activo:false}),'updDetener');}
+/* --- Administrador: publicar anuncios y felicitaciones (colección anuncios; reglas: solo admin) --- */
+function anuForm(){const t=$('anuTit').value.trim(),x=$('anuTxt').value.trim(),d=$('anuDesde').value,h=$('anuHasta').value;
+  if(!t||!x)return {err:'Escribe el título y el texto.'};if(!d||!h)return {err:'Elige las dos fechas.'};
+  const [y1,m1,d1]=d.split('-').map(Number),[y2,m2,d2]=h.split('-').map(Number);const desde=new Date(y1,m1-1,d1,0,0,0),hasta=new Date(y2,m2-1,d2+1,0,0,0);
+  if(hasta<=desde)return {err:'«Hasta» debe ser el mismo día o después de «Desde».'};if(hasta<=new Date())return {err:'Esas fechas ya pasaron.'};
+  return {titulo:t.slice(0,120),texto:x.slice(0,2000),tipo:$('anuTipo').value,boton:$('anuBoton').value.trim().slice(0,40)||'Continuar',desde,hasta};}
+const anuFecha=v=>{const m=anuMs(v);if(m==null)return '—';const f=new Date(m);return DIA[f.getDay()]+' '+f.getDate()+' '+MES[f.getMonth()]+' '+pad(f.getHours())+':'+pad(f.getMinutes());};
+async function anuAdmLista(){const box=$('anuLista');if(!box||nube.rol!=='admin'||!nube.db)return;
+  try{const q=await nube.db.collection('anuncios').where('activo','==',true).get();const L=[];q.forEach(d=>L.push(Object.assign({id:d.id},d.data())));
+    box.innerHTML=L.length?'<b>Activos:</b>'+L.map(a=>'<div style="margin:6px 0">• '+esc(a.titulo)+' · '+esc(anuFecha(a.desde))+' → '+esc(anuFecha(a.hasta))+' <button type="button" class="btn ghost small" data-anuoff="'+esc(a.id)+'">Desactivar</button></div>').join(''):'No hay anuncios activos.';}
+  catch(e){box.textContent='No pude leer los anuncios ('+(e.code||e.message)+').';}}
+document.addEventListener('click',async e=>{const t=e.target;if(!t)return;
+  if(t.id==='anuPrev'){const f=anuForm();if(f.err){toast(f.err);return}anuMostrar(Object.assign({prev:1},f));return}
+  if(t.id==='anuPub'){if(nube.rol!=='admin'||!nube.db){toast('Solo el administrador conectado a la nube puede publicar.');return}const f=anuForm();if(f.err){toast(f.err);return}
+    if(!confirm('¿Publicar «'+f.titulo+'» para TODO el personal?\n\nSe verá una vez por persona desde '+anuFecha(f.desde)+' hasta '+anuFecha(f.hasta)+'.'))return;
+    if(!await adminVerificar()){toast('Acción cancelada: identidad no confirmada.');return}
+    t.disabled=true;$('anuEst').textContent='Publicando…';
+    try{const TS=firebase.firestore.Timestamp;await nube.db.collection('anuncios').add({titulo:f.titulo,texto:f.texto,tipo:f.tipo,boton:f.boton,activo:true,desde:TS.fromDate(f.desde),hasta:TS.fromDate(f.hasta),creadoPor:nube.auth.currentUser.uid,creadoEn:firebase.firestore.FieldValue.serverTimestamp()});
+      $('anuEst').textContent='✔ Publicado. Cada persona lo verá una vez entre '+anuFecha(f.desde)+' y '+anuFecha(f.hasta)+'.';toast('🛫 Anuncio publicado');void anuAdmLista();}
+    catch(err){$('anuEst').textContent='No se publicó: '+(err.code||err.message);}finally{t.disabled=false;}return}
+  if(t.dataset&&t.dataset.anuoff){if(nube.rol!=='admin'||!nube.db)return;if(!confirm('¿Desactivar este anuncio? Ya no le saldrá a nadie más.'))return;
+    try{await nube.db.collection('anuncios').doc(t.dataset.anuoff).update({activo:false});toast('Anuncio desactivado');void anuAdmLista();}catch(err){toast('No se pudo desactivar: '+(err.code||err.message));}}});
 /* --- Anuncios desde la nube (colección anuncios; lo visto queda en miembros/{uid}/vistos) --- */
 const ANU={cola:[],mostrados:0,uid:'',timer:null};
 const anuMs=v=>v==null||v===''?null:(v.toMillis?v.toMillis():typeof v==='number'?v:(Date.parse(v)||null));
@@ -1236,7 +1366,7 @@ function anuMostrar(a){const ico={felicitacion:'🛫',importante:'⚠️',aviso:
  String(a.texto||'').slice(0,2000).split(/\n\s*\n|\n/).filter(p=>p.trim()).forEach(p=>{const e=document.createElement('p');e.style.cssText='margin:0 0 12px;color:#E6ECF2;text-align:left';e.textContent=p.trim();c.appendChild(e);});
  const f=document.createElement('div');f.style.cssText='margin-top:6px;font-size:13px;color:#cfd8e3';f.textContent='ShiftOnDuty';
  const b=document.createElement('button');b.type='button';b.className='btn';b.style.cssText='margin-top:16px;width:100%';b.textContent=(typeof a.boton==='string'&&a.boton.trim()?a.boton.trim().slice(0,40):'Continuar');
- b.onclick=()=>{anuMarcarLocal(ANU.uid,a.id);try{nube.db.collection('miembros').doc(ANU.uid).collection('vistos').doc(a.id).set({en:firebase.firestore.FieldValue.serverTimestamp()}).catch(()=>{});}catch(_){}
+ b.onclick=()=>{if(a.prev){w.remove();return}anuMarcarLocal(ANU.uid,a.id);try{nube.db.collection('miembros').doc(ANU.uid).collection('vistos').doc(a.id).set({en:firebase.firestore.FieldValue.serverTimestamp()}).catch(()=>{});}catch(_){}
   w.remove();setTimeout(anuSiguiente,400);};
  c.append(f,b);w.appendChild(c);document.body.appendChild(w);b.focus();}
 async function nubeRevisarAcceso(){
@@ -1252,7 +1382,7 @@ async function nubeActivarAcceso(u,m){nube.rol=m.rol;nube.sg=String(m.siglas||''
  try{void updRevisar(true)}catch(_){/* el aviso de actualización nunca frena la app */}
  if(nube.unsub){nube.unsub();nube.unsub=null;}
  nubeEstado('✔ Conectado como '+u.email+' · rol '+m.rol+(m.rol!=='admin'&&m.supervisor===true?' · supervisor':'')+' · recibiendo cambios'+(m.__cache?' (sin internet: acceso por confirmar)':''));accPintar();
- if(m.rol==='admin'){$('nubeAdminPanel').hidden=false;usrIniciar();void updAdmLeer();}
+ if(m.rol==='admin'){$('nubeAdminPanel').hidden=false;usrIniciar();void updAdmLeer();void anuAdmLista();}
  setTimeout(pubReintentar,2000);
  nube.unsub=nube.db.collection('cambios').onSnapshot(qs=>{const ultimos=new Map();qs.forEach(doc=>{const d=doc.data(),cab=String(d.codigo||'').split('\n')[0].split('|');if(cab[0]!=='SOD1')return;const mk=(+cab[1])*12+MESES[normN(cab[2])],fecha=d.creadoEn&&d.creadoEn.toMillis?d.creadoEn.toMillis():0;const sn=selloN(cab[4]);nube.ultSello=nube.ultSello||{};if(!nube.ultSello[mk]||sn>selloN(nube.ultSello[mk]))nube.ultSello[mk]=cab[4];const prev=ultimos.get(mk);if(!prev||sn>prev.sn||(sn===prev.sn&&(fecha>prev.fecha||(fecha===prev.fecha&&doc.id>prev.id))))ultimos.set(mk,{d,fecha,id:doc.id,sn});});ultimos.forEach(({d,fecha})=>nubeAplicar(d,fecha));nubeEstado('✔ Conectado como '+u.email+' · rol '+m.rol+(m.rol!=='admin'&&m.supervisor===true?' · supervisor':'')+' · recibiendo cambios'+(m.__cache?' (sin internet: acceso por confirmar)':''));accPintar();},e=>{nubePerdioAcceso(e).then(r=>{if(!r)nubeEstado('⚠️ No pude leer la nube ('+(e.code||e.message)+').');});});
 }
@@ -1292,7 +1422,8 @@ try{if(localStorage.getItem('sod-nube')==='1'||localStorage.getItem('sod-acceso'
    Si no hay internet, queda en T.pubPend y se reintenta sola; nunca se publica una versión más vieja que la de la nube. */
 const selloN=x=>{const v=parseInt(x,36);return isFinite(v)?v:0};
 function pubId(codigo){const p=String(codigo).split('\n')[0].split('|'),m=MESES[normN(p[2])];return p[1]+'-'+String(m+1).padStart(2,'0')+'-'+p[4];}
-function nubePublicarQR(codigo){if(!permiso('qr'))return;const p=String(codigo).split('\n')[0].split('|'),mk=(+p[1])*12+MESES[normN(p[2])];
+const qrConEnt=codigo=>String(codigo).split('\n').slice(1).join(';').split(';').some(ln=>{const p=ln.split(',');return p.length>=7&&p[6]!=='';});
+function nubePublicarQR(codigo){if(!permiso('qr')||qrConEnt(codigo))return;const p=String(codigo).split('\n')[0].split('|'),mk=(+p[1])*12+MESES[normN(p[2])];
   T.pubPend=T.pubPend||{};const prev=T.pubPend[mk];if(prev&&selloN(prev.sello)>selloN(p[4]))return;
   T.pubPend[mk]={codigo,sello:p[4],en:Date.now(),err:''};try{localStorage.setItem(TKEY,JSON.stringify(T))}catch(_){}void pubIntentar(mk);}
 function pubGuardar(){try{localStorage.setItem(TKEY,JSON.stringify(T))}catch(_){}try{renderT()}catch(_){}}
@@ -1317,6 +1448,9 @@ document.addEventListener('click',e=>{if(e.target.id==='tPubRe'){for(const k of 
 function pubHTML(){const L=Object.entries(T.pubPend||{});if(!L.length)return '';
   return L.map(([mk,pp])=>'<div class="tfalta" id="tPubPend"><span>⏳ <b>Cambios de '+esc(MESL[mk%12])+' pendientes de publicación.</b> Ya están en tu celular; '+(pp.err==='sin internet'||pp.err==='sin respuesta de la nube'?'se publicarán solos al volver la conexión.':esc(pp.err||'publicando…'))+'</span><button type="button" class="btn small" id="tPubRe">Reintentar</button></div>').join('');}
 /* Mostrar solamente cambios del día actual o posteriores; los realizados requieren estado explícito. */
+function entResumen(mk){const ix=I(),mal=ix.entMal.filter(x=>x.mk===mk);let ok=0;ix.entP.forEach((v,k)=>{if(k.startsWith(mk+'|'))ok++;});if(!mal.length&&!ok)return '';
+  return '<div class="tfalta ent"><span>🎓 <b>Entrenamiento:</b> '+ok+' alumno(s) con instructor válido'+(mal.length?' · <b>'+mal.length+' bloqueado(s)</b> (no se aplicaron; la cobertura del instructor sigue igual):':'')+'</span></div>'+
+    (mal.length?'<ul class="chg">'+mal.map(x=>'<li>⛔ '+esc(x.code+' '+fCorta(mk,x.d)+' · '+x.tr.i+' → '+x.tr.a.join(', ')+': '+x.m)+'</li>').join('')+'</ul>':'');}
 function qrPendientes(mk,ent){const hoy=today();return (ent||[]).filter(e=>Number.isInteger(e.d)&&e.d>=1&&e.d<=dimOf(mk)&&fechaDe(mk,e.d)>=hoy);}
 function aplicarQR(txt,desdeNube=false){if(desdeNube!==true&&!permiso('qr')){accNegar('qr');return}const [cab,cuerpo='']=String(txt).split('\n');const p=cab.split('|');
   if(p[0]!=='SOD1'){toast('Ese QR no es de la Checklist CENAMER.');return}
@@ -1329,15 +1463,18 @@ function aplicarQR(txt,desdeNube=false){if(desdeNube!==true&&!permiso('qr')){acc
   if(!qrScan||qrScan.sello!==sello||qrScan.n!==n)qrScan={sello,n,mk,por,partes:{}};qrScan.partes[i]=cuerpo;
   const faltan=[];for(let k=1;k<=n;k++)if(qrScan.partes[k]==null)faltan.push(k);
   if(faltan.length){toast('✔ QR '+i+' de '+n+' leído. Falta'+(faltan.length>1?'n':'')+' el '+faltan.join(', ')+': toma la foto del siguiente.');return}
-  const ent=[];for(let k=1;k<=n;k++)for(const ln of (qrScan.partes[k]||'').split(';')){if(!ln.trim())continue;const [d,code,o,a,rel,fl='']=ln.split(',');
-    ent.push({d:+d,code:String(code).toUpperCase(),orig:o?o.split('/'):[],act:a?a.split('/'):[],rel:rel||'',ex:fl.includes('e'),ho:fl.includes('h')});}
-  if(ent.some(e=>!Number.isInteger(e.d)||e.d<1||e.d>31||!e.code)){qrScan=null;if(!desdeNube)toast('⛔ Uno de los QR tiene datos dañados: no apliqué ni publiqué nada. Vuelve a escanear los '+n+' QR.');return}
+  const ent=[];for(let k=1;k<=n;k++)for(const ln of (qrScan.partes[k]||'').split(';')){if(!ln.trim())continue;const pp=ln.split(','),[d,code,o,a,rel,fl='',trs='']=pp;
+    /* BUILD 49 · 7.º campo «i:INSTRUCTOR a:AL1.AL2» (opción B). Formato estricto: si está dañado, no se aplica nada del QR. */
+    let tr=null,mal=pp.length>7;if(trs){const m=String(trs).match(/^i:([A-Z]{2,4}) a:([A-Z]{2,4}(?:\.[A-Z]{2,4})*)$/);if(m)tr={i:m[1],a:m[2].split('.')};else mal=true;}
+    ent.push(Object.assign({d:+d,code:String(code).toUpperCase(),orig:o?o.split('/'):[],act:a?a.split('/'):[],rel:rel||'',ex:fl.includes('e'),ho:fl.includes('h')},tr?{tr}:{},mal?{mal:1}:{}));}
+  if(ent.some(e=>!Number.isInteger(e.d)||e.d<1||e.d>31||!e.code||e.mal)){qrScan=null;if(!desdeNube)toast('⛔ Uno de los QR tiene datos dañados: no apliqué ni publiqué nada. Vuelve a escanear los '+n+' QR.');return}
   const completo='SOD1|'+p[1]+'|'+p[2]+'|1/1|'+sello+'|'+por+'\n'+Array.from({length:n},(_,j)=>qrScan.partes[j+1]||'').join(';');
-  T.real=T.real||{};const prevEnt=T.real[mk]&&T.real[mk].sello!==sello?(T.real[mk].ent||[]):null,clave=e=>[e.d,e.code,e.orig.join('/'),e.act.join('/')].join('|');
+  T.real=T.real||{};const prevEnt=T.real[mk]&&T.real[mk].sello!==sello?(T.real[mk].ent||[]):null,clave=e=>[e.d,e.code,e.orig.join('/'),e.act.join('/'),e.tr?e.tr.i+'>'+e.tr.a.join('.'):''].join('|');
   let dif=T.real[mk]&&T.real[mk].sello===sello?T.real[mk].dif:null;
   if(prevEnt){const kn=new Set(ent.map(clave)),kp=new Set(prevEnt.map(clave));dif={canc:prevEnt.filter(e=>!kn.has(clave(e))),nuevos:ent.filter(e=>!kp.has(clave(e))),ts:Date.now()};if(!dif.canc.length&&!dif.nuevos.length)dif=null;}
   T.real[mk]={sello,por,ts:Date.now(),ent};if(dif)T.real[mk].dif=dif;qrScan=null;tMes=mk;saveT();
-  if(!desdeNube)void nubePublicarQR(completo);
+  /* E6.4 · Un QR con datos de entrenamiento NUNCA se publica en la nube (los lectores 46/47/48 no tienen las protecciones). */
+  const conEnt=ent.some(e=>e.tr);if(!desdeNube){if(conEnt)toast('🔒 Este QR trae entrenamiento: queda solo en este celular y no se publica en la nube (E6.4).');else void nubePublicarQR(completo);}
   const todos=(ent||[]).filter(e=>Number.isInteger(e.d)&&e.d>=1&&e.d<=dimOf(mk));const vigentes=qrPendientes(mk,ent);const pasados=todos.filter(e=>!vigentes.includes(e));
   const esMio=e=>e.orig.includes(T.sg)||e.act.includes(T.sg);const mios=vigentes.filter(esMio),miosPas=pasados.filter(esMio);
   const li=e=>'<li><span class="rel">'+esc(e.rel+(e.ex?' ✨':'')+(e.ho?' 📞':''))+'</span> · '+esc(e.code)+' '+esc(fCorta(mk,e.d))+'</li>';
@@ -1346,8 +1483,8 @@ function aplicarQR(txt,desdeNube=false){if(desdeNube!==true&&!permiso('qr')){acc
     (miosPas.length?'<p><b>Tuyos ya pasados:</b> '+miosPas.length+'</p><ul class="chg">'+miosPas.map(li).join('')+'</ul>':'')+
     (vigentes.length?'<details class="talm"><summary><b>Cambios por venir ('+vigentes.length+')</b><span></span></summary><ul class="chg">'+vigentes.map(li).join('')+'</ul></details>':'')+
     (pasados.length?'<details class="talm"><summary><b>Cambios ya pasados ('+pasados.length+')</b><span></span></summary><ul class="chg">'+pasados.map(li).join('')+'</ul></details>':'')+
-    '<p class="hint">✅ QR aplicado: '+todos.length+' cambios guardados. Tu calendario, "¿Quién me cubre?" y tus alarmas ya usan el horario real.</p>';}
-document.addEventListener('change',async e=>{if(e.target.id!=='tQr')return;const f=e.target.files[0];e.target.value='';if(!f)return;if(!await permisoAhora('qr')){accNegar('qr');return;}toast('Leyendo el QR…');
+    entResumen(mk)+'<p class="hint">✅ QR aplicado: '+todos.length+' cambios guardados. Tu calendario, "¿Quién me cubre?" y tus alarmas ya usan el horario real.</p>';}
+document.addEventListener('change',async e=>{if(e.target.id!=='tQr'&&e.target.id!=='tQrG')return;/* 1.0.2: tQr = cámara, tQrG = galería; la misma lectura */const f=e.target.files[0];e.target.value='';if(!f)return;if(!await permisoAhora('qr')){accNegar('qr');return;}toast('Leyendo el QR…');
   try{const t=await leerQR(f);if(!t){toast('No encontré un QR en la foto. Acércate más y que salga completo y nítido.');return}aplicarQR(t);}
   catch(err){toast(err&&err.message==='script'?'Necesito internet la primera vez para leer QR.':'No pude leer la foto.');}});
 
@@ -1597,7 +1734,7 @@ document.addEventListener('click',e=>{if(e.target.id!=='iosInstNo')return;try{lo
 document.addEventListener('click',e=>{const b=e.target.closest('#bCal,#iosCalBtn');if(!b)return;T.calExp=b.dataset.firma;try{localStorage.setItem(TKEY,JSON.stringify(T))}catch(_){}setTimeout(renderT,1500);});
 
 /* --- novedades de la versión --- */
-const NOV=['⬆️ ShiftOnDuty 1.0.1: cuando haya una versión nueva verás «Actualizar ShiftOnDuty». Se instala encima y conservas todo.','🚀 ShiftOnDuty 1.0.0: versión oficial. Tus horarios, cambios, siglas y sesión se conservan al actualizar.','⏰ Próximas alarmas: toca el botón azul de un turno para activar o desactivar su aviso.','📅 Selector de meses: el mes anterior queda como «hist.» y la app cambia sola al mes actual.','🔒 Seguridad: cargar horarios y respaldos requiere una cuenta aprobada en la nube. Escanear QR queda para supervisores; los cambios te llegan solos. Tus horarios guardados se conservan siempre.','📢 Avisos del administrador: llegan por la nube y se muestran una sola vez a cada usuario.','📲 iPhone: la app te recuerda instalarla y te avisa cuando debes actualizar el Calendario.','🗓️ El calendario es la vista principal. Toca un día para ver tu turno, quién trabaja contigo y las opciones de cambio.',
+const NOV=['🛫 ShiftOnDuty 1.0.2 (BUILD 51): el administrador puede publicar felicitaciones y anuncios desde la app.','🎨 ShiftOnDuty 1.0.2 (BUILD 50): los turnos de instrucción se ven en verde y los turnos extra ✨ en fucsia, como el naranja de A4/B4 y el azul de A3.','🎓 ShiftOnDuty 1.0.2 (BUILD 49): los alumnos de Ejecutivo (AS, FM, HM, RL y MC) aparecen EN ENTRENAMIENTO y nunca cuentan como cobertura del sector. El verde del horario se reconoce como instrucción, sin dar habilitaciones.','📷 ShiftOnDuty 1.0.2: «Escanear QR» abre la cámara directamente.','🎯 ShiftOnDuty 1.0.2: en «¿Quién me cubre?» y en los intercambios solo aparecen las personas habilitadas para la posición (Supervisor cubre todo · Ejecutivo cubre Ejecutivo y Planner · Planner solo Planner · Radio solo Radio). También se respetan las restricciones individuales: RO, FC y AB no aparecen para el Turno C.','🔢 ShiftOnDuty 1.0.2: el aviso de actualización muestra la versión nueva y la que tienes, con su número de compilación (por ejemplo «1.0.2 (48) · tienes 1.0.1 (47)»).','⬆️ ShiftOnDuty 1.0.1: cuando haya una versión nueva verás «Actualizar ShiftOnDuty». Se instala encima y conservas todo.','🚀 ShiftOnDuty 1.0.0: versión oficial. Tus horarios, cambios, siglas y sesión se conservan al actualizar.','⏰ Próximas alarmas: toca el botón azul de un turno para activar o desactivar su aviso.','📅 Selector de meses: el mes anterior queda como «hist.» y la app cambia sola al mes actual.','🔒 Seguridad: cargar horarios y respaldos requiere una cuenta aprobada en la nube. Escanear QR queda para supervisores; los cambios te llegan solos. Tus horarios guardados se conservan siempre.','📢 Avisos del administrador: llegan por la nube y se muestran una sola vez a cada usuario.','📲 iPhone: la app te recuerda instalarla y te avisa cuando debes actualizar el Calendario.','🗓️ El calendario es la vista principal. Toca un día para ver tu turno, quién trabaja contigo y las opciones de cambio.',
   '🔎 Un solo buscador: siglas + fecha te dice qué turno tiene ese día; solo siglas te muestra su calendario debajo del tuyo.',
   '⏰ Alarmas para cada turno: A (para levantarte), B y C, con aviso de descanso antes del C.',
   '🔕 Modo en turno: los eventos no suenan mientras trabajas; te llegan al salir.',
